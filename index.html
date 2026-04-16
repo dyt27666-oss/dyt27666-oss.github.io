@@ -3,16 +3,1183 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TY | Portfolio</title>
+    <title>TY | Cosoul Portfolio</title>
     <meta
       name="description"
-      content="Portfolio showcasing FitTrack-AI, e-commerce analytics, and selected research projects in data analysis, machine learning, and intelligent applications."
+      content="Apple-inspired portfolio homepage for TY, featuring Cosoul.AI and related AI agent, evaluation, monitoring, and matching projects."
     />
     <link rel="icon" href="./assets/fittrack-ai/fittrack-ai-logo.png" />
-    <script type="module" crossorigin src="./assets/index-BFfcL_fb.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DdwI_WVk.css">
+    <style>
+      :root {
+        --bg: #f4f5f7;
+        --bg-2: #eef1f5;
+        --surface: rgba(255, 255, 255, 0.66);
+        --surface-strong: rgba(255, 255, 255, 0.82);
+        --line: rgba(18, 24, 33, 0.08);
+        --line-strong: rgba(18, 24, 33, 0.16);
+        --text: #111827;
+        --muted: #5b6472;
+        --accent: #367cff;
+        --accent-soft: rgba(54, 124, 255, 0.12);
+        --shadow: 0 24px 70px rgba(28, 39, 56, 0.11);
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --radius-md: 18px;
+        --max-width: 1200px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(92, 157, 255, 0.18), transparent 28%),
+          radial-gradient(circle at top right, rgba(255, 255, 255, 0.92), transparent 34%),
+          linear-gradient(180deg, #f9fafc 0%, #f0f3f7 48%, #eef2f6 100%);
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: auto;
+        border-radius: 999px;
+        pointer-events: none;
+        z-index: 0;
+        filter: blur(16px);
+      }
+
+      body::before {
+        top: 6rem;
+        left: -5rem;
+        width: 20rem;
+        height: 20rem;
+        background: rgba(102, 153, 255, 0.14);
+      }
+
+      body::after {
+        right: -4rem;
+        bottom: 8rem;
+        width: 18rem;
+        height: 18rem;
+        background: rgba(147, 197, 253, 0.18);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 1rem 1.25rem 0;
+      }
+
+      .nav {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0.95rem 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.62);
+        backdrop-filter: blur(26px) saturate(160%);
+        box-shadow: 0 12px 30px rgba(18, 24, 33, 0.08);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-mark {
+        width: 2.25rem;
+        height: 2.25rem;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffffff, #d9e7ff);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        color: var(--accent);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .nav-links a {
+        padding: 0.55rem 0.8rem;
+        border-radius: 999px;
+        transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .nav-links a:hover {
+        background: rgba(17, 24, 39, 0.05);
+        color: var(--text);
+        transform: translateY(-1px);
+      }
+
+      .section {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 0;
+      }
+
+      .hero {
+        padding-top: 2.6rem;
+      }
+
+      .hero-shell {
+        position: relative;
+        overflow: hidden;
+        padding: 4.25rem;
+        border-radius: 40px;
+        background:
+          radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.14), transparent 18%),
+          radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.16), transparent 24%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 248, 252, 0.82));
+        border: 1px solid rgba(255, 255, 255, 0.88);
+        box-shadow: var(--shadow);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.45rem 0.8rem;
+        margin-bottom: 1.4rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        color: #344154;
+        font-size: 0.82rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+        gap: 2rem;
+        align-items: end;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(3rem, 6vw, 5.8rem);
+        line-height: 0.94;
+        letter-spacing: -0.06em;
+        max-width: 10.2ch;
+      }
+
+      .hero p.lead {
+        max-width: 40rem;
+        margin: 1.5rem 0 0;
+        color: var(--muted);
+        font-size: 1.12rem;
+        line-height: 1.85;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-top: 1.9rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        min-height: 3.1rem;
+        padding: 0 1.15rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+
+      .button.primary {
+        color: white;
+        background: linear-gradient(135deg, #1f6dff, #5a8dff);
+        box-shadow: 0 16px 36px rgba(31, 109, 255, 0.24);
+      }
+
+      .button.secondary {
+        color: var(--text);
+        border-color: rgba(17, 24, 39, 0.09);
+        background: rgba(255, 255, 255, 0.74);
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .hero-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-xl);
+        background: var(--surface);
+        backdrop-filter: blur(24px) saturate(140%);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 31rem;
+        padding: 1.5rem;
+        border-radius: 36px;
+        background:
+          linear-gradient(160deg, rgba(255, 255, 255, 0.74), rgba(233, 240, 250, 0.68)),
+          radial-gradient(circle at top right, rgba(54, 124, 255, 0.16), transparent 28%);
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 1rem 1rem auto auto;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(54, 124, 255, 0.18), transparent 70%);
+        filter: blur(8px);
+      }
+
+      .device-stack {
+        position: relative;
+        height: 100%;
+      }
+
+      .device {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        box-shadow: 0 30px 80px rgba(20, 29, 44, 0.16);
+      }
+
+      .device::before {
+        content: "";
+        position: absolute;
+        top: 0.85rem;
+        left: 50%;
+        width: 30%;
+        height: 0.35rem;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        background: rgba(17, 24, 39, 0.14);
+        z-index: 2;
+      }
+
+      .device img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .device.main {
+        top: 1rem;
+        right: 1rem;
+        width: 68%;
+        height: 82%;
+      }
+
+      .device.side {
+        bottom: 1.3rem;
+        left: 0;
+        width: 36%;
+        height: 64%;
+      }
+
+      .device.floating {
+        top: 6%;
+        left: 7%;
+        width: 34%;
+        height: 26%;
+        border-radius: 24px;
+      }
+
+      .floating-note {
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
+        max-width: 13rem;
+        padding: 0.9rem 1rem;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(18px);
+        border: 1px solid rgba(255, 255, 255, 0.88);
+        color: #314155;
+        font-size: 0.9rem;
+        line-height: 1.65;
+        z-index: 3;
+      }
+
+      .mini-label {
+        color: #445267;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .stack-list,
+      .tags,
+      .capability-list,
+      .fact-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.55rem 0.82rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        font-size: 0.85rem;
+        color: #324052;
+      }
+
+      .hero-card .stat {
+        margin-top: 1rem;
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      .stat-item {
+        padding: 0.95rem 1rem;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(17, 24, 39, 0.06);
+      }
+
+      .stat-item strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 1.02rem;
+      }
+
+      .stat-item span {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 0.94rem;
+      }
+
+      .section-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        letter-spacing: -0.05em;
+      }
+
+      .section-head p {
+        max-width: 34rem;
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .spotlight {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 1.2rem;
+      }
+
+      .panel {
+        padding: 1.7rem;
+        border-radius: var(--radius-xl);
+        background: var(--surface-strong);
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(22px) saturate(135%);
+      }
+
+      .panel h3 {
+        margin: 0.85rem 0 0.75rem;
+        font-size: 1.8rem;
+        letter-spacing: -0.04em;
+      }
+
+      .panel p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.84;
+      }
+
+      .panel-grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .showcase-band {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .showcase-copy {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .showcase-card {
+        position: relative;
+        overflow: hidden;
+        padding: 1rem;
+        border-radius: 30px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 253, 0.84));
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow);
+      }
+
+      .showcase-card img {
+        width: 100%;
+        border-radius: 22px;
+        border: 1px solid rgba(17, 24, 39, 0.08);
+        box-shadow: 0 20px 44px rgba(20, 29, 44, 0.12);
+      }
+
+      .showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .showcase-note {
+        padding: 1rem 1.05rem;
+        border-radius: 22px;
+        background: rgba(247, 249, 252, 0.96);
+        border: 1px solid rgba(17, 24, 39, 0.06);
+      }
+
+      .showcase-note strong {
+        display: block;
+        margin-bottom: 0.35rem;
+      }
+
+      .key-points {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1.2rem;
+      }
+
+      .key-point {
+        padding: 1rem 1.05rem;
+        border-radius: 20px;
+        background: rgba(247, 249, 252, 0.92);
+        border: 1px solid rgba(17, 24, 39, 0.06);
+      }
+
+      .key-point strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .project-card {
+        position: relative;
+        overflow: hidden;
+        padding: 1.5rem;
+        min-height: 20rem;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(246, 248, 252, 0.8)),
+          linear-gradient(135deg, rgba(54, 124, 255, 0.07), transparent 50%);
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        box-shadow: var(--shadow);
+        transition: transform 220ms ease, box-shadow 220ms ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 80px rgba(28, 39, 56, 0.14);
+      }
+
+      .project-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -2rem -4rem auto;
+        width: 9rem;
+        height: 9rem;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(54, 124, 255, 0.18), transparent 68%);
+      }
+
+      .project-card h3 {
+        margin: 0.9rem 0 0.7rem;
+        font-size: 1.48rem;
+        letter-spacing: -0.04em;
+      }
+
+      .project-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .project-meta {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .meta-chip {
+        width: fit-content;
+        padding: 0.45rem 0.72rem;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: #1853bf;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+
+      .capability-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .capability-card {
+        padding: 1.45rem;
+        border-radius: 28px;
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.84);
+        box-shadow: var(--shadow);
+      }
+
+      .capability-card h3 {
+        margin: 0.8rem 0 0.6rem;
+        font-size: 1.26rem;
+        letter-spacing: -0.03em;
+      }
+
+      .capability-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.78;
+      }
+
+      .capability-list {
+        margin-top: 1rem;
+      }
+
+      .fact-board {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 1rem;
+      }
+
+      .fact-main {
+        padding: 1.7rem;
+        border-radius: 32px;
+        background:
+          linear-gradient(135deg, rgba(24, 33, 53, 0.94), rgba(43, 64, 107, 0.9)),
+          radial-gradient(circle at top right, rgba(96, 165, 250, 0.22), transparent 28%);
+        color: white;
+        box-shadow: 0 30px 70px rgba(16, 24, 40, 0.22);
+      }
+
+      .fact-main h3 {
+        margin: 0.9rem 0 0.6rem;
+        font-size: 1.95rem;
+        letter-spacing: -0.04em;
+      }
+
+      .fact-main p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.76);
+        line-height: 1.85;
+      }
+
+      .fact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.95rem;
+      }
+
+      .fact-item {
+        padding: 1.2rem;
+        border-radius: 24px;
+        background: var(--surface-strong);
+        border: 1px solid rgba(255, 255, 255, 0.86);
+        box-shadow: var(--shadow);
+      }
+
+      .fact-item strong {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 1.9rem;
+        letter-spacing: -0.05em;
+      }
+
+      .fact-item span {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 0.94rem;
+      }
+
+      footer {
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      .footer-shell {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 1.6rem 1.8rem;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .footer-shell p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 700ms ease, transform 700ms ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero-shell {
+          padding: 2rem;
+          border-radius: 32px;
+        }
+
+        .hero-grid,
+        .spotlight,
+        .showcase-band,
+        .fact-board,
+        .capability-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-grid,
+        .showcase-grid,
+        .fact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          border-radius: 24px;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .section,
+        footer,
+        .nav-wrap {
+          padding-left: 0.9rem;
+          padding-right: 0.9rem;
+        }
+
+        .hero-shell,
+        .panel,
+        .hero-visual,
+        .showcase-card,
+        .project-card,
+        .capability-card,
+        .fact-main,
+        .fact-item,
+        .footer-shell {
+          border-radius: 24px;
+        }
+
+        h1 {
+          max-width: none;
+        }
+
+        .hero p.lead {
+          font-size: 1rem;
+        }
+
+        .hero-visual {
+          min-height: 24rem;
+        }
+
+        .device.main {
+          width: 72%;
+          height: 74%;
+        }
+
+        .device.side {
+          width: 42%;
+          height: 56%;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="page">
+      <div class="nav-wrap">
+        <nav class="nav">
+          <div class="brand">
+            <div class="brand-mark">TY</div>
+            <span>TY Portfolio</span>
+          </div>
+          <div class="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#highlights">Highlights</a>
+            <a href="https://github.com/dyt27666-oss" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </nav>
+      </div>
+
+      <main>
+        <section class="section hero">
+          <div class="hero-shell reveal">
+            <span class="eyebrow">Cosoul Project Family / AI Agent Portfolio</span>
+            <div class="hero-grid">
+              <div>
+                <h1>围绕 Cosoul.AI 构建的 AI Agent 作品集</h1>
+                <p class="lead">
+                  我聚焦于 AI Agent、评测系统、提示词优化、匹配算法实验与监控工具的落地实现。这个主页不再把项目拆成零散 demo，而是把
+                  <strong>Cosoul.AI</strong> 及其配套仓库组织成一条完整的产品与工程链路。
+                </p>
+                <div class="hero-actions">
+                  <a class="button primary" href="#projects">查看项目</a>
+                  <a
+                    class="button secondary"
+                    href="https://github.com/dyt27666-oss"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    打开 GitHub
+                  </a>
+                </div>
+              </div>
+              <aside class="hero-card">
+                <span class="mini-label">Portfolio Scope</span>
+                <div class="stack-list" style="margin-top: 1rem">
+                  <span class="pill">TypeScript</span>
+                  <span class="pill">Next.js</span>
+                  <span class="pill">React Native</span>
+                  <span class="pill">PostgreSQL</span>
+                  <span class="pill">pgvector</span>
+                  <span class="pill">Prompt Lab</span>
+                </div>
+                <div class="stat">
+                  <div class="stat-item">
+                    <strong>主线项目</strong>
+                    <span>团队协作的 Cosoul.AI 主产品，围绕多 Persona、任务匹配、Agent 协商与跨端体验展开。</span>
+                  </div>
+                  <div class="stat-item">
+                    <strong>独立补充项目</strong>
+                    <span>评测平台、提示词实验室、监控面板与算法实验平台，基本由我独立完成，用来补足主项目的工程闭环。</span>
+                  </div>
+                  <div class="stat-item">
+                    <strong>求职指向</strong>
+                    <span>面向大模型应用、Agent 系统、算法实验与数据智能方向，展示的不是“课程作业”，而是连续构建能力。</span>
+                  </div>
+                </div>
+              </aside>
+              <div class="hero-visual reveal">
+                <div class="device-stack">
+                  <div class="device floating">
+                    <img src="./assets/cosoul-ai/hero-overview.png" alt="Cosoul product overview" />
+                  </div>
+                  <div class="device side">
+                    <img src="./assets/cosoul-ai/ui-1.png" alt="Cosoul interface scene one" />
+                  </div>
+                  <div class="device main">
+                    <img src="./assets/cosoul-ai/ui-2.png" alt="Cosoul interface scene two" />
+                  </div>
+                  <div class="floating-note">
+                    重点不是单个仓库，而是围绕主产品形成的一整套评测、优化、监控与实验能力。
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Featured Project</span>
+              <h2>Cosoul.AI 作为核心产品</h2>
+            </div>
+            <p>
+              这一组项目不是孤立存在。Cosoul.AI 是主产品，另外四个仓库分别补齐评测、提示词、监控和算法实验能力，形成一条完整的 AI
+              Agent 工程链路。
+            </p>
+          </div>
+
+          <div class="spotlight">
+            <article class="panel reveal">
+              <span class="mini-label">Flagship</span>
+              <h3>Cosoul.AI</h3>
+              <p>
+                一套面向 AI 社交匹配场景的多智能体产品框架。用户可以创建多个 Persona，让 Agent 代表不同身份完成需求澄清、对象检索、协商撮合与连接确认。
+                项目采用 monorepo 组织 Web 与 Native 端，并在业务层接入 LLM、Embedding、记忆与任务状态机。
+              </p>
+              <div class="tags" style="margin-top: 1.2rem">
+                <span class="pill">Next.js 16</span>
+                <span class="pill">Expo 55</span>
+                <span class="pill">Turborepo</span>
+                <span class="pill">PostgreSQL + pgvector</span>
+                <span class="pill">Multi-Agent</span>
+              </div>
+              <div class="key-points">
+                <div class="key-point">
+                  <strong>产品结构</strong>
+                  <span>围绕 Persona、Task、Handshake、Chat 与 Memory 组织 AI 社交匹配主流程。</span>
+                </div>
+                <div class="key-point">
+                  <strong>工程架构</strong>
+                  <span>Web 与 Native 共享 UI / Core / Agent 包，降低跨端重复实现成本。</span>
+                </div>
+                <div class="key-point">
+                  <strong>我在其中的价值</strong>
+                  <span>除主产品团队协作外，我还围绕它独立做出配套平台，让评测、优化、监控和算法实验可以拆分推进。</span>
+                </div>
+              </div>
+            </article>
+
+            <div class="panel-grid">
+              <div class="panel reveal">
+                <span class="mini-label">What It Proves</span>
+                <h3>不是单点 demo，而是系统化构建</h3>
+                <p>
+                  Cosoul.AI 证明的是产品级整合能力。它不只涉及前端页面，还包括 Agent 任务流程、数据库建模、Embedding 检索、状态机设计与多端工程组织。
+                </p>
+              </div>
+              <div class="panel reveal">
+                <span class="mini-label">Role Framing</span>
+                <h3>团队主项目 + 多个独立支撑仓库</h3>
+                <p>
+                  主项目体现协作与集成能力，四个配套仓库体现独立完成能力。对招聘方来说，这比只展示一个大仓库更有说服力，你既能参与团队，也能自己把模块做完。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="showcase-band">
+            <div class="showcase-copy">
+              <div class="panel reveal">
+                <span class="mini-label">Product Surfaces</span>
+                <h3>比“会写功能”更进一步，是能把产品界面和工程结构一起推进</h3>
+                <p>
+                  我希望这页更像正式发布页，而不是把仓库名堆在白底卡片上。真实界面会直接提高可信度，也更容易让面试官判断项目是不是已经走到落地阶段。
+                </p>
+              </div>
+              <div class="showcase-note reveal">
+                <strong>为什么加入截图？</strong>
+                <span>因为只写技术栈很容易显得空。界面证据能让项目从“我做过”变成“我确实参与过并理解产品表达”。</span>
+              </div>
+              <div class="showcase-note reveal">
+                <strong>为什么还是保守措辞？</strong>
+                <span>因为你现在最需要的是可信度。宁可把贡献说准，也不要写成面试时无法展开的虚高叙述。</span>
+              </div>
+            </div>
+            <div class="showcase-grid">
+              <div class="showcase-card reveal">
+                <img src="./assets/cosoul-ai/ui-1.png" alt="Cosoul detailed interface one" />
+              </div>
+              <div class="showcase-card reveal">
+                <img src="./assets/cosoul-ai/ui-2.png" alt="Cosoul detailed interface two" />
+              </div>
+              <div class="showcase-card reveal" style="grid-column: 1 / -1;">
+                <img src="./assets/cosoul-ai/ui-3.png" alt="Cosoul detailed interface three" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Independent Builds</span>
+              <h2>四个补强主项目的独立仓库</h2>
+            </div>
+            <p>
+              这些项目把主产品里最难被面试官快速看懂的部分，拆成更清晰的工程模块：评测、提示词、监控和算法实验。
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card reveal">
+              <span class="meta-chip">Evaluation Platform</span>
+              <h3>Soul Eval</h3>
+              <p>
+                面向 Cosoul.AI 的端到端评测与自动优化平台。通过场景化测试、Judge / Cross-Judge / Critic / Optimizer 多角色闭环，验证 AI
+                personality 演化是否合理，并支持自动 prompt 优化。
+              </p>
+              <div class="project-meta">
+                <div class="tags">
+                  <span class="pill">Next.js 14</span>
+                  <span class="pill">PostgreSQL</span>
+                  <span class="pill">pgvector</span>
+                  <span class="pill">Auto Optimization</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <span class="meta-chip">Prompt Engineering Lab</span>
+              <h3>Humanlike Task Agent Prompt</h3>
+              <p>
+                一个针对任务 Agent 对话体验的提示词实验室。重点解决过度追问、对话生硬、缺少快捷回复和语言适配不足等问题，并提供多模型、多提示词版本的并行对比面板。
+              </p>
+              <div class="project-meta">
+                <div class="tags">
+                  <span class="pill">Node.js</span>
+                  <span class="pill">Express</span>
+                  <span class="pill">Prompt Lab</span>
+                  <span class="pill">UX-Oriented Agent</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <span class="meta-chip">Observability</span>
+              <h3>PipeView</h3>
+              <p>
+                独立于生产站点和评测平台的匹配流程监控面板，用于观察 L0 硬过滤、L1 检索、L1.5 重排与 L2 Judge 的运行状况。适合产品、算法和支持角色共用。
+              </p>
+              <div class="project-meta">
+                <div class="tags">
+                  <span class="pill">React 19</span>
+                  <span class="pill">Vite 6</span>
+                  <span class="pill">Express 5</span>
+                  <span class="pill">ECharts</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <span class="meta-chip">Algorithm Experimentation</span>
+              <h3>Cosoul.AI-Algorithm-Test</h3>
+              <p>
+                围绕匹配算法做统一评估和可视化实验的平台，从分类判断转向排序推荐，覆盖 Dense + BM25 检索、L1.5 截断、Judge 评估与多种实验脚本，适合展示算法试验和指标分析能力。
+              </p>
+              <div class="project-meta">
+                <div class="tags">
+                  <span class="pill">React 19</span>
+                  <span class="pill">TailwindCSS 4</span>
+                  <span class="pill">PostgreSQL</span>
+                  <span class="pill">Matching Lab</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="capabilities">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Capability Model</span>
+              <h2>把项目串起来的能力主线</h2>
+            </div>
+            <p>
+              这页最重要的不是“仓库数量”，而是让招聘方看到你在多个仓库里反复证明的能力模式。
+            </p>
+          </div>
+
+          <div class="capability-grid">
+            <article class="capability-card reveal">
+              <span class="mini-label">01</span>
+              <h3>Agent Product Engineering</h3>
+              <p>
+                从 Persona、任务流、连接关系到跨端界面，能把 AI 应用从概念落成真实产品结构，而不是停留在 API demo。
+              </p>
+              <div class="capability-list">
+                <span class="pill">Multi-Agent Flow</span>
+                <span class="pill">Cross-Platform</span>
+                <span class="pill">State Machine</span>
+              </div>
+            </article>
+
+            <article class="capability-card reveal">
+              <span class="mini-label">02</span>
+              <h3>Evaluation & Prompt Systems</h3>
+              <p>
+                不只会“调用模型”，还会做评测闭环、Prompt 对比、失败归因和自动优化，这对大模型岗位比单纯接接口更有含金量。
+              </p>
+              <div class="capability-list">
+                <span class="pill">Judge Loop</span>
+                <span class="pill">Prompt Optimization</span>
+                <span class="pill">Scenario Testing</span>
+              </div>
+            </article>
+
+            <article class="capability-card reveal">
+              <span class="mini-label">03</span>
+              <h3>Retrieval, Matching & Monitoring</h3>
+              <p>
+                在检索、匹配、实验指标和运行监控上都有实际项目支撑，适合往算法工程、数据智能和 Agent 系统方向延伸。
+              </p>
+              <div class="capability-list">
+                <span class="pill">Dense + BM25</span>
+                <span class="pill">pgvector</span>
+                <span class="pill">Observability</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="highlights">
+          <div class="section-head reveal">
+            <div>
+              <span class="eyebrow">Selected Highlights</span>
+              <h2>给面试官的快速判断依据</h2>
+            </div>
+            <p>
+              这里刻意不用夸张的商业指标，而是用更可信的工程事实告诉对方：你到底做过什么、做到了哪一层。
+            </p>
+          </div>
+
+          <div class="fact-board">
+            <article class="fact-main reveal">
+              <span class="mini-label" style="color: rgba(255,255,255,0.72)">Why This Portfolio</span>
+              <h3>比“项目罗列”更像一条完整的产品研发链</h3>
+              <p>
+                从主产品 Cosoul.AI，到评测平台、提示词实验室、监控面板和匹配算法平台，我希望呈现的是连续的工程能力：提出问题、拆成模块、搭建工具、验证效果、再回到主产品迭代。
+              </p>
+            </article>
+
+            <div class="fact-grid">
+              <div class="fact-item reveal">
+                <strong>5</strong>
+                <span>围绕 Cosoul.AI 形成的相关项目仓库，覆盖产品、评测、提示词、监控和算法实验。</span>
+              </div>
+              <div class="fact-item reveal">
+                <strong>4</strong>
+                <span>你明确说明基本由自己独立完成的支撑项目仓库，能体现独立实现能力。</span>
+              </div>
+              <div class="fact-item reveal">
+                <strong>Web + Native</strong>
+                <span>主项目具备跨端组织能力，而不是单一网页原型。</span>
+              </div>
+              <div class="fact-item reveal">
+                <strong>Agent + Eval + Algo</strong>
+                <span>从应用层到评测层再到算法实验层都有可展示的工程落点。</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-shell reveal">
+          <div>
+            <strong>TY / AI Agent & Data Intelligence Portfolio</strong>
+            <p>
+              当前主页聚焦 Cosoul.AI 项目族，适合用于投递大模型应用、Agent 系统、算法实验与数据智能相关岗位。
+            </p>
+          </div>
+          <div class="footer-links">
+            <a class="button secondary" href="#projects">Back to Projects</a>
+            <a
+              class="button secondary"
+              href="https://github.com/dyt27666-oss"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub Profile
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.14 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+    </script>
   </body>
 </html>
