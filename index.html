@@ -191,6 +191,11 @@
       }
       .project-card:hover { transform: translateY(-6px); border-color: rgba(92,243,255,.24); box-shadow: 0 0 0 1px rgba(92,243,255,.15), 0 28px 90px rgba(0,0,0,.4); }
       .project-card::after { content: ""; position: absolute; inset: auto -1.2rem -1.2rem auto; width: 7rem; height: 7rem; border-radius: 999px; background: radial-gradient(circle, rgba(165,107,255,.24), transparent 70%); }
+      .project-screenshot {
+        margin-top: 1.2rem; border-radius: 22px; overflow: hidden; background: rgba(6,12,20,.88);
+        border: 1px solid rgba(92,243,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 20px 50px rgba(0,0,0,.26);
+      }
+      .project-screenshot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
       .meta-chip {
         width: fit-content; padding: .45rem .75rem; border-radius: 999px; background: rgba(255,90,214,.1); border: 1px solid rgba(255,90,214,.16);
         color: #ffb3ee; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase;
@@ -255,9 +260,9 @@
               </div>
               <div class="hero-visual reveal">
                 <div class="hero-board">
-                  <div class="screen tertiary"><img src="./assets/cosoul-ai/hero-overview.png" alt="Cosoul system overview" /></div>
-                  <div class="screen secondary"><img src="./assets/cosoul-ai/ui-1.png" alt="Cosoul interface scene one" /></div>
-                  <div class="screen primary"><img src="./assets/cosoul-ai/ui-2.png" alt="Cosoul interface scene two" /></div>
+                  <div class="screen tertiary"><img src="./assets/cosoul-feature/feature-lab.png" alt="Cosoul lab interface" /></div>
+                  <div class="screen secondary"><img src="./assets/cosoul-feature/feature-feed.png" alt="Cosoul product feature interface" /></div>
+                  <div class="screen primary"><img src="./assets/cosoul-market/hero-market.png" alt="Cosoul app market showcase" /></div>
                   <div class="board-note">
                     <div class="board-metric"><strong>5</strong><span>围绕 Cosoul 的项目仓库</span></div>
                     <div class="board-metric"><strong>4</strong><span>主要独立完成的支撑系统</span></div>
@@ -281,17 +286,17 @@
           <div class="section-head reveal"><div><span class="eyebrow">Flagship System</span><h2>Cosoul.AI 是主战场，其他仓库是配套作战系统</h2></div><p>我不把这些仓库当成五个分散项目，而是把它们看成一套围绕主产品展开的 AI 工程体系。这样写的好处是什么？招聘方更容易看出你是系统型选手，而不是堆项目的人。</p></div>
           <div class="spotlight">
             <article class="panel reveal"><strong class="label">Core Product</strong><h3>Cosoul.AI</h3><p>面向 AI 社交匹配场景的多智能体产品框架。用户可以创建多个 Persona，让 Agent 代表不同身份完成需求澄清、对象检索、协商撮合与连接确认。对我来说，它不仅是一个团队主项目，更是后续评测、Prompt、监控和算法实验系统的核心锚点。</p><div class="project-tags" style="margin-top: 1rem"><span class="tag">Next.js 16</span><span class="tag">Expo 55</span><span class="tag">Turborepo</span><span class="tag">PostgreSQL + pgvector</span><span class="tag">Multi-Agent</span></div><div class="signal-grid" style="margin-top: 1rem"><div class="signal-card"><strong>产品侧</strong><span>围绕 Persona、Task、Chat、Handshake 和匹配路径理解用户场景与功能优先级。</span></div><div class="signal-card"><strong>工程侧</strong><span>参与 Web / Native 跨端体系和 Agent 能力整合，理解系统结构而不是只看页面。</span></div><div class="signal-card"><strong>延展侧</strong><span>围绕主产品继续独立做出评测、Prompt 优化、监控与算法实验平台。</span></div><div class="signal-card"><strong>求职信号</strong><span>体现的是“能在真实 AI 产品团队中推进系统”的能力，而不是单点实现。</span></div></div></article>
-            <div class="showcase-stack"><div class="showcase-card reveal"><img src="./assets/cosoul-ai/ui-1.png" alt="Cosoul screenshot one" /></div><div class="showcase-card reveal"><img src="./assets/cosoul-ai/ui-2.png" alt="Cosoul screenshot two" /></div><div class="showcase-card wide reveal"><img src="./assets/cosoul-ai/ui-3.png" alt="Cosoul screenshot three" /></div></div>
+            <div class="showcase-stack"><div class="showcase-card reveal"><img src="./assets/cosoul-market/market-chat.png" alt="Cosoul market-style screenshot" /></div><div class="showcase-card reveal"><img src="./assets/cosoul-feature/feature-feed.png" alt="Cosoul feature screenshot" /></div><div class="showcase-card wide reveal"><img src="./assets/cosoul-feature/feature-lab.png" alt="Cosoul lab screenshot" /></div></div>
           </div>
         </section>
 
         <section class="section">
           <div class="section-head reveal"><div><span class="eyebrow">Supporting Systems</span><h2>围绕主项目延展出的四个支撑系统</h2></div><p>这四个仓库是你最值得在求职中重点讲清楚的部分，因为它们最能证明你不只是参与主项目，还能独立把问题拆出来、单独建系统。</p></div>
           <div class="project-grid">
-            <article class="project-card reveal"><span class="meta-chip">Evaluation Platform</span><h3>Soul Eval</h3><p>面向 Cosoul.AI 的端到端评测与自动优化平台，围绕场景构造、Judge / Cross-Judge / Critic / Optimizer 多角色闭环展开，体现你对 AI 系统“可评测、可优化”的理解。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Eval Loop</span><span class="tag">Prompt Optimization</span><span class="tag">Next.js 14</span><span class="tag">pgvector</span></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Prompt Engineering Lab</span><h3>Humanlike Task Agent Prompt</h3><p>一个专门针对任务 Agent 对话体验的 Prompt 实验室。它解决的不是“模型能不能回话”，而是“Agent 说话是否自然、够不够高效、能不能更像产品里的真实交互”。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Prompt Lab</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">UX-Oriented Agent</span></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Observability</span><h3>PipeView</h3><p>独立于生产站点的匹配流程监控面板，用于观察 L0、L1、L1.5、L2 各阶段运行状态。这个项目很重要，因为它说明你不仅会做功能，还理解系统上线后的可观测性和排查需求。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Monitoring</span><span class="tag">React 19</span><span class="tag">Express 5</span><span class="tag">ECharts</span></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Algorithm Experiment</span><h3>Cosoul.AI-Algorithm-Test</h3><p>围绕匹配算法做统一评估和实验的平台，覆盖 Dense + BM25 检索、L1.5 截断、Judge 评估与多种实验脚本。这个仓库让你的画像不只是“应用开发”，还带有实验分析和算法工程色彩。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Matching Lab</span><span class="tag">Retrieval</span><span class="tag">Experimentation</span><span class="tag">PostgreSQL</span></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Evaluation Platform</span><h3>Soul Eval</h3><p>面向 Cosoul.AI 的端到端评测与自动优化平台，围绕场景构造、Judge / Cross-Judge / Critic / Optimizer 多角色闭环展开，体现你对 AI 系统“可评测、可优化”的理解。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Eval Loop</span><span class="tag">Prompt Optimization</span><span class="tag">Next.js 14</span><span class="tag">pgvector</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/soul-eval.png" alt="Soul Eval web platform screenshot" /></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Prompt Engineering Lab</span><h3>Humanlike Task Agent Prompt</h3><p>一个专门针对任务 Agent 对话体验的 Prompt 实验室。它解决的不是“模型能不能回话”，而是“Agent 说话是否自然、够不够高效、能不能更像产品里的真实交互”。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Prompt Lab</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">UX-Oriented Agent</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/prompt-lab.png" alt="Prompt engineering lab screenshot" /></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Observability</span><h3>PipeView</h3><p>独立于生产站点的匹配流程监控面板，用于观察 L0、L1、L1.5、L2 各阶段运行状态。这个项目很重要，因为它说明你不仅会做功能，还理解系统上线后的可观测性和排查需求。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Monitoring</span><span class="tag">React 19</span><span class="tag">Express 5</span><span class="tag">ECharts</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/pipeview.png" alt="PipeView monitoring dashboard screenshot" /></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Algorithm Experiment</span><h3>Cosoul.AI-Algorithm-Test</h3><p>围绕匹配算法做统一评估和实验的平台，覆盖 Dense + BM25 检索、L1.5 截断、Judge 评估与多种实验脚本。这个仓库让你的画像不只是“应用开发”，还带有实验分析和算法工程色彩。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Matching Lab</span><span class="tag">Retrieval</span><span class="tag">Experimentation</span><span class="tag">PostgreSQL</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/algorithm-test.png" alt="Algorithm experiment dashboard screenshot" /></div></article>
           </div>
         </section>
 
