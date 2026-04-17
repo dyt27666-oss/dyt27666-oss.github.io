@@ -177,10 +177,46 @@
       .panel h3 { font-size: 1.72rem; }
       .fact-main h3 { font-size: 2rem; }
       .pipeline { grid-template-columns: repeat(4, minmax(0,1fr)); margin-top: 1.2rem; }
-      .showcase-stack { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .showcase-card { overflow: hidden; padding: 0; background: var(--panel-soft); }
-      .showcase-card.wide { grid-column: 1 / -1; }
-      .showcase-card img { width: 100%; height: 100%; object-fit: cover; }
+      .showcase-stack { display: grid; gap: 1rem; align-content: start; }
+      .gallery {
+        position: relative; display: grid; gap: .9rem;
+        padding: 1rem; border-radius: var(--radius-xl); background: rgba(11,22,37,.88);
+        border: 1px solid rgba(92,243,255,.11); box-shadow: var(--shadow);
+      }
+      .gallery-stage {
+        position: relative; overflow: hidden; border-radius: 28px; background:
+          linear-gradient(180deg, rgba(7,15,24,.96), rgba(10,18,31,.92)),
+          radial-gradient(circle at top right, rgba(92,243,255,.12), transparent 24%);
+        border: 1px solid rgba(92,243,255,.12);
+      }
+      .gallery-slide {
+        display: none; width: 100%; height: 100%; align-items: center; justify-content: center;
+        padding: .9rem;
+      }
+      .gallery-slide.active { display: flex; }
+      .gallery-slide img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+      .flagship-gallery .gallery-stage { aspect-ratio: 10 / 13; min-height: 34rem; }
+      .gallery-label {
+        width: fit-content; padding: .38rem .7rem; border-radius: 999px;
+        font-size: .76rem; letter-spacing: .06em; text-transform: uppercase;
+        color: rgba(210,244,255,.9); background: rgba(15,30,49,.88); border: 1px solid rgba(92,243,255,.12);
+      }
+      .gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+      .gallery-buttons, .gallery-dots { display: flex; align-items: center; gap: .45rem; }
+      .gallery-button {
+        width: 2.6rem; height: 2.6rem; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(92,243,255,.14); background: rgba(16,31,49,.86); color: var(--text);
+        cursor: pointer; transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      }
+      .gallery-button:hover { transform: translateY(-2px); background: rgba(32,62,99,.88); border-color: rgba(92,243,255,.24); }
+      .gallery-button:disabled { opacity: .42; cursor: default; transform: none; }
+      .gallery-dot {
+        width: .62rem; height: .62rem; border-radius: 999px; border: 0; padding: 0;
+        background: rgba(255,255,255,.18); cursor: pointer; transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      }
+      .gallery-dot.active { background: var(--cyan); transform: scale(1.08); box-shadow: 0 0 0 4px rgba(92,243,255,.12); }
+      .gallery-count { color: var(--muted); font-size: .84rem; letter-spacing: .03em; }
+      .gallery.single-slide .gallery-controls { display: none; }
       .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .project-card {
         position: relative; overflow: hidden; min-height: 22rem;
@@ -195,7 +231,10 @@
         margin-top: 1.2rem; border-radius: 22px; overflow: hidden; background: rgba(6,12,20,.88);
         border: 1px solid rgba(92,243,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 20px 50px rgba(0,0,0,.26);
       }
-      .project-screenshot img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+      .project-screenshot .gallery { border: 0; box-shadow: none; padding: 0; background: transparent; }
+      .project-screenshot .gallery-stage { aspect-ratio: 16 / 10; min-height: 15rem; border-radius: 20px; }
+      .project-screenshot .gallery-slide { padding: .45rem; }
+      .project-screenshot .gallery-controls { padding: 0 .4rem .4rem; }
       .meta-chip {
         width: fit-content; padding: .45rem .75rem; border-radius: 999px; background: rgba(255,90,214,.1); border: 1px solid rgba(255,90,214,.16);
         color: #ffb3ee; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase;
@@ -216,9 +255,10 @@
       @media (max-width: 1100px) { .hero-grid, .mission-grid, .spotlight, .fact-board { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
       @media (max-width: 860px) {
         .hero-shell { padding: 2rem; }
-        .project-grid, .showcase-stack, .fact-grid, .signal-grid, .pipeline, .board-note { grid-template-columns: 1fr; }
+        .project-grid, .fact-grid, .signal-grid, .pipeline, .board-note { grid-template-columns: 1fr; }
         .nav { border-radius: 26px; flex-direction: column; align-items: flex-start; }
         .hero-visual { min-height: 30rem; }
+        .flagship-gallery .gallery-stage { min-height: 28rem; }
       }
       @media (max-width: 640px) {
         .section, .nav-wrap, footer { padding-left: .9rem; padding-right: .9rem; }
@@ -286,17 +326,37 @@
           <div class="section-head reveal"><div><span class="eyebrow">Flagship System</span><h2>Cosoul.AI 是主战场，其他仓库是配套作战系统</h2></div><p>我不把这些仓库当成五个分散项目，而是把它们看成一套围绕主产品展开的 AI 工程体系。这样写的好处是什么？招聘方更容易看出你是系统型选手，而不是堆项目的人。</p></div>
           <div class="spotlight">
             <article class="panel reveal"><strong class="label">Core Product</strong><h3>Cosoul.AI</h3><p>这是一个面向 AI 社交匹配场景的团队主项目，围绕 Persona、任务澄清、对象检索、Agent 协商与连接确认构建完整产品链路。我的价值不只是参与其中某个局部模块，而是长期以 <strong>产品理解 + 全栈落地 + AI 系统延展</strong> 的方式推进这条主线，并继续把评测、Prompt、监控和算法实验从主产品中拆出来，做成独立支撑系统。</p><div class="project-tags" style="margin-top: 1rem"><span class="tag">Next.js 16</span><span class="tag">Expo 55</span><span class="tag">Turborepo</span><span class="tag">PostgreSQL + pgvector</span><span class="tag">Multi-Agent</span></div><div class="signal-grid" style="margin-top: 1rem"><div class="signal-card"><strong>我推进什么</strong><span>围绕 Persona、Task、Chat、Handshake 和匹配路径理解真实使用场景，把产品目标转成可执行功能。</span></div><div class="signal-card"><strong>我落地什么</strong><span>参与 Web / Native 跨端实现与 Agent 能力整合，关注的不只是页面，而是系统流程能否真正跑通。</span></div><div class="signal-card"><strong>我延展什么</strong><span>围绕主产品继续独立抽离评测、Prompt 优化、监控与算法实验平台，让主项目具备持续迭代能力。</span></div><div class="signal-card"><strong>这说明什么</strong><span>我更适合进入 AI 工程、AI 产品研发或复合型岗位，承担跨产品、工程与实验推进的角色。</span></div></div></article>
-            <div class="showcase-stack"><div class="showcase-card reveal"><img src="./assets/cosoul-market/market-chat.png" alt="Cosoul market-style screenshot" /></div><div class="showcase-card reveal"><img src="./assets/cosoul-feature/feature-feed.png" alt="Cosoul feature screenshot" /></div><div class="showcase-card wide reveal"><img src="./assets/cosoul-feature/feature-lab.png" alt="Cosoul lab screenshot" /></div></div>
+            <div class="showcase-stack reveal">
+              <div class="gallery flagship-gallery" data-gallery data-gallery-name="Cosoul.AI">
+                <span class="gallery-label">Flagship Gallery</span>
+                <div class="gallery-stage">
+                  <figure class="gallery-slide active"><img src="./assets/cosoul-market/hero-market.png" alt="Cosoul App Store style hero showcase" /></figure>
+                  <figure class="gallery-slide"><img src="./assets/cosoul-market/market-chat.png" alt="Cosoul social chat and AI friends showcase" /></figure>
+                  <figure class="gallery-slide"><img src="./assets/cosoul-market/market-create-agent.png" alt="Cosoul create your own agent showcase" /></figure>
+                  <figure class="gallery-slide"><img src="./assets/cosoul-feature/feature-feed.png" alt="Cosoul main feed interface" /></figure>
+                  <figure class="gallery-slide"><img src="./assets/cosoul-feature/feature-lab.png" alt="Cosoul lab and invite feature interface" /></figure>
+                  <figure class="gallery-slide"><img src="./assets/cosoul-feature/feature-profile.png" alt="Cosoul profile and AI partner interface" /></figure>
+                </div>
+                <div class="gallery-controls">
+                  <div class="gallery-buttons">
+                    <button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Cosoul screenshot">‹</button>
+                    <button class="gallery-button" type="button" data-gallery-next aria-label="Next Cosoul screenshot">›</button>
+                  </div>
+                  <div class="gallery-dots" data-gallery-dots></div>
+                  <span class="gallery-count" data-gallery-count></span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         <section class="section">
           <div class="section-head reveal"><div><span class="eyebrow">Supporting Systems</span><h2>围绕主项目延展出的四个支撑系统</h2></div><p>这四个仓库是你最值得在求职中重点讲清楚的部分，因为它们最能证明你不只是参与主项目，还能独立把问题拆出来、单独建系统。</p></div>
           <div class="project-grid">
-            <article class="project-card reveal"><span class="meta-chip">Evaluation Platform</span><h3>Soul Eval</h3><p>为了让 `Cosoul.AI` 不只停留在“能跑”，我把评测和优化链路单独抽成了独立平台。我的重点不是堆一个后台，而是把场景构造、Judge / Critic / Optimizer 闭环组织起来，让 AI 输出变成可验证、可比较、可持续优化的对象。这说明我具备把 AI 系统推进到评测闭环阶段的能力。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Eval Loop</span><span class="tag">Prompt Optimization</span><span class="tag">Next.js 14</span><span class="tag">pgvector</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/soul-eval.png" alt="Soul Eval web platform screenshot" /></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Prompt Engineering Lab</span><h3>Humanlike Task Agent Prompt</h3><p>这个项目不是为了证明“我会写 Prompt”，而是为了解决任务 Agent 在真实产品里说话不自然、追问低效的问题。我把 Prompt 实验、对话对比和版本迭代单独做成实验室，让交互体验可以被系统化调优。这说明我不仅关心模型输出，还关心 AI 产品里的用户体验和迭代效率。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Prompt Lab</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">UX-Oriented Agent</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/prompt-lab.png" alt="Prompt engineering lab screenshot" /></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Observability</span><h3>PipeView</h3><p>当主产品开始变复杂，问题就不再只是“功能有没有做完”，而是流程出了偏差时能不能看见、定位和解释。所以我把匹配流水线拆成独立监控面板，用来观察 L0 到 L2 的运行状态和异常信号。这说明我理解 AI 系统上线后的可观测性，而不是只会把功能交付到页面上。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Monitoring</span><span class="tag">React 19</span><span class="tag">Express 5</span><span class="tag">ECharts</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/pipeview.png" alt="PipeView monitoring dashboard screenshot" /></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Algorithm Experiment</span><h3>Cosoul.AI-Algorithm-Test</h3><p>为了让匹配策略不靠直觉推进，我把检索、重排、Judge 评估和实验脚本整理成独立实验平台。我的重点是把“算法想法”变成可跑、可比、可分析的实验过程，而不是停留在概念层。这说明我除了应用开发之外，也具备一定的匹配实验和算法工程推进能力。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Matching Lab</span><span class="tag">Retrieval</span><span class="tag">Experimentation</span><span class="tag">PostgreSQL</span></div><div class="project-screenshot"><img src="./assets/cosoul-labs/algorithm-test.png" alt="Algorithm experiment dashboard screenshot" /></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Evaluation Platform</span><h3>Soul Eval</h3><p>为了让 `Cosoul.AI` 不只停留在“能跑”，我把评测和优化链路单独抽成了独立平台。我的重点不是堆一个后台，而是把场景构造、Judge / Critic / Optimizer 闭环组织起来，让 AI 输出变成可验证、可比较、可持续优化的对象。这说明我具备把 AI 系统推进到评测闭环阶段的能力。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Eval Loop</span><span class="tag">Prompt Optimization</span><span class="tag">Next.js 14</span><span class="tag">pgvector</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Soul Eval"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/soul-eval.png" alt="Soul Eval dashboard screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/soul-eval/detail-overview.png" alt="Soul Eval detail overview screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/soul-eval/judge-workspace.png" alt="Soul Eval judge workspace screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Soul Eval screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Soul Eval screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Prompt Engineering Lab</span><h3>Humanlike Task Agent Prompt</h3><p>这个项目不是为了证明“我会写 Prompt”，而是为了解决任务 Agent 在真实产品里说话不自然、追问低效的问题。我把 Prompt 实验、对话对比和版本迭代单独做成实验室，让交互体验可以被系统化调优。这说明我不仅关心模型输出，还关心 AI 产品里的用户体验和迭代效率。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Prompt Lab</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">UX-Oriented Agent</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Prompt Lab"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/prompt-lab.png" alt="Prompt Lab main screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/prompt-lab/multi-model.png" alt="Prompt Lab multi-model comparison screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/prompt-lab/prompt-lab-report.png" alt="Prompt Lab report screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Prompt Lab screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Prompt Lab screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Observability</span><h3>PipeView</h3><p>当主产品开始变复杂，问题就不再只是“功能有没有做完”，而是流程出了偏差时能不能看见、定位和解释。所以我把匹配流水线拆成独立监控面板，用来观察 L0 到 L2 的运行状态和异常信号。这说明我理解 AI 系统上线后的可观测性，而不是只会把功能交付到页面上。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Monitoring</span><span class="tag">React 19</span><span class="tag">Express 5</span><span class="tag">ECharts</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="PipeView"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/pipeview.png" alt="PipeView monitoring dashboard screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous PipeView screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next PipeView screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Algorithm Experiment</span><h3>Cosoul.AI-Algorithm-Test</h3><p>为了让匹配策略不靠直觉推进，我把检索、重排、Judge 评估和实验脚本整理成独立实验平台。我的重点是把“算法想法”变成可跑、可比、可分析的实验过程，而不是停留在概念层。这说明我除了应用开发之外，也具备一定的匹配实验和算法工程推进能力。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Matching Lab</span><span class="tag">Retrieval</span><span class="tag">Experimentation</span><span class="tag">PostgreSQL</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Matching Lab"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/algorithm-test.png" alt="Algorithm experiment main screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/algorithm-test/funnel-overview.png" alt="Algorithm experiment funnel overview screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/algorithm-test/matching-report.png" alt="Algorithm experiment report screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Matching Lab screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Matching Lab screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
           </div>
         </section>
 
@@ -345,6 +405,47 @@
         { threshold: 0.12 }
       );
       document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+
+      document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+        const slides = Array.from(gallery.querySelectorAll(".gallery-slide"));
+        const prev = gallery.querySelector("[data-gallery-prev]");
+        const next = gallery.querySelector("[data-gallery-next]");
+        const dotsWrap = gallery.querySelector("[data-gallery-dots]");
+        const count = gallery.querySelector("[data-gallery-count]");
+        let index = slides.findIndex((slide) => slide.classList.contains("active"));
+        if (index < 0) index = 0;
+
+        const dots = slides.map((_, slideIndex) => {
+          const dot = document.createElement("button");
+          dot.className = "gallery-dot";
+          dot.type = "button";
+          dot.setAttribute("aria-label", `Go to slide ${slideIndex + 1}`);
+          dot.addEventListener("click", () => setSlide(slideIndex));
+          dotsWrap?.appendChild(dot);
+          return dot;
+        });
+
+        const setSlide = (nextIndex) => {
+          index = (nextIndex + slides.length) % slides.length;
+          slides.forEach((slide, slideIndex) => {
+            slide.classList.toggle("active", slideIndex === index);
+          });
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle("active", dotIndex === index);
+          });
+          if (count) count.textContent = `${index + 1} / ${slides.length}`;
+        };
+
+        if (slides.length <= 1) {
+          gallery.classList.add("single-slide");
+          if (count) count.textContent = "1 / 1";
+        } else {
+          prev?.addEventListener("click", () => setSlide(index - 1));
+          next?.addEventListener("click", () => setSlide(index + 1));
+        }
+
+        setSlide(index);
+      });
     </script>
   </body>
 </html>
