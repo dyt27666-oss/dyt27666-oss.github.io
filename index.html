@@ -11,24 +11,24 @@
     <link rel="icon" href="./assets/fittrack-ai/fittrack-ai-logo.png" />
     <style>
       :root {
-        --bg: #071019;
-        --bg-2: #0b1524;
-        --panel: rgba(10, 20, 34, 0.82);
-        --panel-strong: rgba(10, 18, 31, 0.94);
-        --panel-soft: rgba(19, 31, 51, 0.72);
-        --text: #eff6ff;
-        --muted: #97a7c1;
-        --line: rgba(84, 214, 255, 0.18);
-        --cyan: #5cf3ff;
-        --blue: #58a6ff;
-        --violet: #a56bff;
-        --magenta: #ff5ad6;
-        --shadow: 0 30px 80px rgba(0, 0, 0, 0.36);
-        --glow-cyan: 0 0 0 1px rgba(92, 243, 255, 0.2), 0 0 38px rgba(92, 243, 255, 0.16);
-        --glow-violet: 0 0 0 1px rgba(165, 107, 255, 0.18), 0 0 42px rgba(165, 107, 255, 0.12);
-        --radius-xl: 34px;
-        --radius-lg: 24px;
-        --radius-md: 18px;
+        --bg: #0a0a0f;
+        --bg-2: #111118;
+        --panel: rgba(255, 255, 255, 0.035);
+        --panel-strong: rgba(255, 255, 255, 0.06);
+        --panel-soft: rgba(255, 255, 255, 0.02);
+        --text: #ededed;
+        --muted: #888894;
+        --line: rgba(255, 255, 255, 0.06);
+        --cyan: #6ec6c6;
+        --blue: #6e9cc6;
+        --violet: #9b8ec4;
+        --magenta: #c49bba;
+        --shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+        --glow-cyan: none;
+        --glow-violet: none;
+        --radius-xl: 20px;
+        --radius-lg: 16px;
+        --radius-md: 12px;
         --max-width: 1260px;
       }
 
@@ -39,34 +39,47 @@
         min-height: 100vh;
         color: var(--text);
         font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(88, 166, 255, 0.16), transparent 20%),
-          radial-gradient(circle at top right, rgba(165, 107, 255, 0.15), transparent 24%),
-          radial-gradient(circle at 70% 25%, rgba(255, 90, 214, 0.1), transparent 18%),
-          linear-gradient(180deg, #060d15 0%, #09101a 32%, #071019 100%);
+        background: var(--bg);
         overflow-x: hidden;
+      }
+      @keyframes drift1 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(4%, 6%) scale(1.05); }
+        50% { transform: translate(-3%, 3%) scale(0.95); }
+        75% { transform: translate(5%, -4%) scale(1.02); }
+      }
+      @keyframes drift2 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(-5%, -3%) scale(1.04); }
+        50% { transform: translate(4%, -5%) scale(0.96); }
+        75% { transform: translate(-3%, 6%) scale(1.03); }
+      }
+      @keyframes drift3 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(6%, 4%) scale(1.06); }
+        66% { transform: translate(-4%, -5%) scale(0.97); }
       }
       body::before {
         content: "";
         position: fixed;
         inset: 0;
-        background-image:
-          linear-gradient(rgba(92, 243, 255, 0.045) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(92, 243, 255, 0.045) 1px, transparent 1px);
-        background-size: 48px 48px;
-        mask-image: radial-gradient(circle at center, black 36%, transparent 100%);
+        background:
+          radial-gradient(ellipse 50% 45% at 15% 10%, rgba(110, 198, 198, 0.18), transparent),
+          radial-gradient(ellipse 40% 35% at 75% 70%, rgba(155, 142, 196, 0.14), transparent);
         pointer-events: none;
-        opacity: 0.36;
         z-index: 0;
+        animation: drift1 30s ease-in-out infinite;
       }
       body::after {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(180deg, rgba(255,255,255,.012) 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,.018) 100%);
+        background:
+          radial-gradient(ellipse 45% 40% at 80% 15%, rgba(110, 198, 198, 0.12), transparent),
+          radial-gradient(ellipse 35% 30% at 25% 85%, rgba(155, 142, 196, 0.1), transparent);
         pointer-events: none;
-        mix-blend-mode: screen;
         z-index: 0;
+        animation: drift2 24s ease-in-out infinite;
       }
       a { color: inherit; text-decoration: none; }
       img { display: block; max-width: 100%; }
@@ -81,39 +94,32 @@
         gap: 1rem;
         padding: 1rem 1.25rem;
         border-radius: 999px;
-        background: rgba(8, 17, 28, 0.72);
-        border: 1px solid rgba(92, 243, 255, 0.14);
+        background: rgba(10, 10, 15, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.06);
         backdrop-filter: blur(20px);
         box-shadow: var(--shadow);
       }
       .brand { display: flex; align-items: center; gap: .8rem; font-weight: 700; letter-spacing: .02em; }
       .brand-mark {
         width: 2.3rem; height: 2.3rem; border-radius: 999px; display: grid; place-items: center;
-        color: var(--cyan); border: 1px solid rgba(92,243,255,.28);
-        background: radial-gradient(circle at 35% 35%, rgba(92,243,255,.24), transparent 70%), rgba(8,16,26,.86);
-        box-shadow: var(--glow-cyan);
+        color: var(--cyan); border: 1px solid rgba(110, 198, 198, 0.2);
+        background: rgba(110, 198, 198, 0.08);
       }
       .nav-links { display: flex; flex-wrap: wrap; gap: .55rem; color: var(--muted); font-size: .92rem; }
       .nav-links a { padding: .55rem .85rem; border-radius: 999px; transition: .18s ease; }
-      .nav-links a:hover { color: var(--text); background: rgba(92,243,255,.08); box-shadow: inset 0 0 0 1px rgba(92,243,255,.14); }
-      .section { max-width: var(--max-width); margin: 0 auto; padding: 1.4rem 1.2rem 0; }
-      .hero { padding-top: 2.1rem; }
+      .nav-links a:hover { color: var(--text); background: rgba(255,255,255,.05); }
+      .section { max-width: var(--max-width); margin: 0 auto; padding: 2rem 1.2rem 0; }
+      .hero { padding-top: 2.4rem; }
       .hero-shell {
-        position: relative; overflow: hidden; border-radius: 44px; padding: 3rem;
-        background:
-          radial-gradient(circle at 15% 15%, rgba(92,243,255,.12), transparent 16%),
-          radial-gradient(circle at 88% 18%, rgba(165,107,255,.14), transparent 20%),
-          linear-gradient(135deg, rgba(7,15,25,.96), rgba(10,18,32,.88));
-        border: 1px solid rgba(92,243,255,.14); box-shadow: var(--shadow);
+        position: relative; overflow: hidden; border-radius: var(--radius-xl); padding: 3rem;
+        background: var(--panel);
+        border: 1px solid rgba(255, 255, 255, 0.06); box-shadow: var(--shadow);
+        backdrop-filter: blur(16px);
       }
-      .hero-shell::before {
-        content: ""; position: absolute; inset: 0;
-        background: linear-gradient(transparent 0%, rgba(255,255,255,.02) 48%, transparent 52%, transparent 100%);
-        background-size: 100% 6px; opacity: .24; pointer-events: none;
-      }
+      .hero-shell::before { display: none; }
       .eyebrow, .small-label, .panel strong.label {
         display: inline-flex; align-items: center; gap: .55rem; padding: .5rem .82rem; border-radius: 999px;
-        border: 1px solid rgba(92,243,255,.16); background: rgba(92,243,255,.06);
+        border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.04);
         color: var(--cyan); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
       }
       .hero-grid { margin-top: 1.3rem; display: grid; grid-template-columns: minmax(0,1.04fr) minmax(320px,.96fr); gap: 1.2rem; }
@@ -123,7 +129,7 @@
       .signal-grid, .board-note, .project-grid, .showcase-stack, .capability-grid, .fact-grid, .pipeline { display: grid; gap: .9rem; }
       .signal-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .signal-card, .pipeline-step, .fact-item, .capability-card {
-        padding: 1rem; border-radius: 20px; background: rgba(14,24,40,.82); border: 1px solid rgba(84,214,255,.11);
+        padding: 1rem; border-radius: var(--radius-md); background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
       }
       .signal-card strong, .pipeline-step strong { display: block; margin-bottom: .35rem; color: var(--text); }
       .signal-card span, .pipeline-step span, .fact-item span, .capability-card p { color: var(--muted); line-height: 1.75; font-size: .93rem; margin: 0; }
@@ -132,37 +138,33 @@
         display: inline-flex; align-items: center; justify-content: center; min-height: 3.15rem; padding: 0 1.2rem;
         border-radius: 999px; font-weight: 700; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
       }
-      .button.primary { color: #08111a; background: linear-gradient(135deg, var(--cyan), #7de1ff); box-shadow: 0 0 0 1px rgba(92,243,255,.2), 0 0 38px rgba(92,243,255,.22); }
-      .button.secondary { color: var(--text); background: rgba(92,243,255,.08); border: 1px solid rgba(92,243,255,.16); }
+      .button.primary { color: #0a0a0f; background: var(--cyan); }
+      .button.secondary { color: var(--text); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
       .button:hover { transform: translateY(-2px); }
       .tag {
         display: inline-flex; align-items: center; padding: .52rem .82rem; border-radius: 999px;
-        background: rgba(15,28,45,.78); border: 1px solid rgba(92,243,255,.14); color: #d9f8ff; font-size: .84rem;
+        background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); color: var(--muted); font-size: .84rem;
       }
       .hero-visual {
-        position: relative; min-height: 40rem; padding: 1rem; border-radius: 32px;
-        background:
-          radial-gradient(circle at top right, rgba(255,90,214,.12), transparent 24%),
-          radial-gradient(circle at bottom left, rgba(92,243,255,.12), transparent 20%),
-          rgba(7,15,25,.86);
-        border: 1px solid rgba(92,243,255,.15); box-shadow: var(--glow-violet), var(--shadow); overflow: hidden;
+        position: relative; min-height: 40rem; padding: 1rem; border-radius: var(--radius-xl);
+        background: rgba(255,255,255,.02);
+        border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); overflow: hidden;
       }
-      .hero-visual::before { content: "COSOUL SYSTEMS / ACTIVE"; position: absolute; top: 1rem; left: 1rem; color: rgba(92,243,255,.72); font-size: .72rem; letter-spacing: .12em; z-index: 3; }
-      .hero-board { position: relative; height: 100%; }
+      .hero-visual::before { content: "COSOUL SYSTEMS / ACTIVE"; position: absolute; top: 1rem; left: 1rem; color: rgba(255,255,255,.25); font-size: .72rem; letter-spacing: .12em; z-index: 3; }
       .screen {
-        position: absolute; overflow: hidden; border-radius: 26px; background: rgba(10,17,29,.95);
-        border: 1px solid rgba(92,243,255,.12); box-shadow: 0 26px 60px rgba(0,0,0,.32);
+        position: absolute; overflow: hidden; border-radius: var(--radius-lg); background: rgba(10,10,15,.95);
+        border: 1px solid rgba(255,255,255,.06); box-shadow: 0 16px 48px rgba(0,0,0,.3);
       }
-      .screen::before { content: ""; position: absolute; top: .85rem; left: 50%; width: 26%; height: .34rem; transform: translateX(-50%); border-radius: 999px; background: rgba(255,255,255,.16); z-index: 2; }
+      .screen::before { content: ""; position: absolute; top: .85rem; left: 50%; width: 26%; height: .34rem; transform: translateX(-50%); border-radius: 999px; background: rgba(255,255,255,.1); z-index: 2; }
       .screen img { width: 100%; height: 100%; object-fit: cover; }
       .screen.primary { right: .4rem; top: 2.4rem; width: 70%; height: 74%; }
       .screen.secondary { left: 0; bottom: 4.2rem; width: 40%; height: 56%; }
       .screen.tertiary { left: 8%; top: 10%; width: 42%; height: 22%; }
       .board-note { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; grid-template-columns: repeat(3, minmax(0,1fr)); z-index: 3; }
-      .board-metric { padding: .9rem; border-radius: 18px; background: rgba(8,17,27,.78); border: 1px solid rgba(92,243,255,.12); backdrop-filter: blur(18px); }
+      .board-metric { padding: .9rem; border-radius: var(--radius-md); background: rgba(10,10,15,.7); border: 1px solid rgba(255,255,255,.06); backdrop-filter: blur(18px); }
       .board-metric strong { display: block; margin-bottom: .28rem; color: var(--cyan); font-size: 1rem; }
       .board-metric span { color: var(--muted); font-size: .83rem; line-height: 1.6; }
-      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.35rem; }
+      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
       .section-head h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.05em; }
       .section-head p, .panel p, .fact-main p { margin: 0; color: var(--muted); line-height: 1.88; }
       .mission-grid, .spotlight, .fact-board { display: grid; gap: 1rem; }
@@ -170,9 +172,9 @@
       .spotlight { grid-template-columns: 1.05fr .95fr; }
       .fact-board { grid-template-columns: 1.08fr .92fr; }
       .panel, .fact-main, .showcase-card, .project-card, .footer-shell {
-        border-radius: var(--radius-xl); background: var(--panel); border: 1px solid rgba(92,243,255,.11); box-shadow: var(--shadow); backdrop-filter: blur(16px);
+        border-radius: var(--radius-xl); background: var(--panel); border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow); backdrop-filter: blur(16px);
       }
-      .panel, .fact-main, .project-card { padding: 1.4rem; }
+      .panel, .fact-main, .project-card { padding: 1.6rem; }
       .panel h3, .fact-main h3 { margin: .9rem 0 .75rem; letter-spacing: -.04em; }
       .panel h3 { font-size: 1.72rem; }
       .fact-main h3 { font-size: 2rem; }
@@ -180,14 +182,12 @@
       .showcase-stack { display: grid; gap: 1rem; align-content: start; }
       .gallery {
         position: relative; display: grid; gap: .9rem;
-        padding: 1rem; border-radius: var(--radius-xl); background: rgba(11,22,37,.88);
-        border: 1px solid rgba(92,243,255,.11); box-shadow: var(--shadow);
+        padding: 1rem; border-radius: var(--radius-xl); background: rgba(255,255,255,.02);
+        border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow);
       }
       .gallery-stage {
-        position: relative; overflow: hidden; border-radius: 28px; background:
-          linear-gradient(180deg, rgba(7,15,24,.96), rgba(10,18,31,.92)),
-          radial-gradient(circle at top right, rgba(92,243,255,.12), transparent 24%);
-        border: 1px solid rgba(92,243,255,.12);
+        position: relative; overflow: hidden; border-radius: var(--radius-lg); background: rgba(10,10,15,.9);
+        border: 1px solid rgba(255,255,255,.06);
       }
       .gallery-slide {
         display: none; width: 100%; height: 100%; align-items: center; justify-content: center;
@@ -199,71 +199,69 @@
       .gallery-label {
         width: fit-content; padding: .38rem .7rem; border-radius: 999px;
         font-size: .76rem; letter-spacing: .06em; text-transform: uppercase;
-        color: rgba(210,244,255,.9); background: rgba(15,30,49,.88); border: 1px solid rgba(92,243,255,.12);
+        color: var(--muted); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06);
       }
       .gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
       .gallery-buttons, .gallery-dots { display: flex; align-items: center; gap: .45rem; }
       .gallery-button {
-        width: 2.6rem; height: 2.6rem; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center;
-        border: 1px solid rgba(92,243,255,.14); background: rgba(16,31,49,.86); color: var(--text);
-        cursor: pointer; transition: transform .18s ease, background .18s ease, border-color .18s ease;
+        width: 2.6rem; height: 2.6rem; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center;
+        border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.04); color: var(--text);
+        cursor: pointer; transition: transform .18s ease, background .18s ease;
       }
-      .gallery-button:hover { transform: translateY(-2px); background: rgba(32,62,99,.88); border-color: rgba(92,243,255,.24); }
+      .gallery-button:hover { transform: translateY(-2px); background: rgba(255,255,255,.08); }
       .gallery-button:disabled { opacity: .42; cursor: default; transform: none; }
       .gallery-dot {
         width: .62rem; height: .62rem; border-radius: 999px; border: 0; padding: 0;
-        background: rgba(255,255,255,.18); cursor: pointer; transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+        background: rgba(255,255,255,.15); cursor: pointer; transition: transform .18s ease, background .18s ease;
       }
-      .gallery-dot.active { background: var(--cyan); transform: scale(1.08); box-shadow: 0 0 0 4px rgba(92,243,255,.12); }
+      .gallery-dot.active { background: var(--cyan); transform: scale(1.08); box-shadow: 0 0 0 4px rgba(110,198,198,.1); }
       .gallery-count { color: var(--muted); font-size: .84rem; letter-spacing: .03em; }
       .gallery.single-slide .gallery-controls { display: none; }
       .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .archive-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
       .project-card {
         position: relative; overflow: hidden; min-height: 22rem;
-        background:
-          linear-gradient(180deg, rgba(10,18,31,.94), rgba(13,24,40,.88)),
-          radial-gradient(circle at top right, rgba(92,243,255,.1), transparent 24%);
+        background: var(--panel);
         transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       }
       .archive-card {
         position: relative; overflow: hidden; display: grid; gap: .9rem;
-        padding: 1.1rem; border-radius: 24px; background:
-          linear-gradient(180deg, rgba(10,18,31,.88), rgba(13,24,40,.8)),
-          radial-gradient(circle at top right, rgba(255,90,214,.08), transparent 22%);
-        border: 1px solid rgba(92,243,255,.08); box-shadow: 0 18px 50px rgba(0,0,0,.22);
+        padding: 1.1rem; border-radius: var(--radius-lg); background: rgba(255,255,255,.02);
+        border: 1px solid rgba(255,255,255,.05); box-shadow: 0 8px 24px rgba(0,0,0,.16);
       }
       .archive-card h3 { margin: .55rem 0 .35rem; font-size: 1.15rem; letter-spacing: -.03em; }
       .archive-card p { margin: 0; color: var(--muted); line-height: 1.72; font-size: .92rem; }
       .archive-thumb {
-        overflow: hidden; border-radius: 18px; border: 1px solid rgba(92,243,255,.1);
-        background: rgba(8,16,27,.92); aspect-ratio: 16 / 10;
+        overflow: hidden; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.06);
+        background: rgba(10,10,15,.9); aspect-ratio: 16 / 10;
       }
       .archive-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-      .project-card:hover { transform: translateY(-6px); border-color: rgba(92,243,255,.24); box-shadow: 0 0 0 1px rgba(92,243,255,.15), 0 28px 90px rgba(0,0,0,.4); }
-      .project-card::after { content: ""; position: absolute; inset: auto -1.2rem -1.2rem auto; width: 7rem; height: 7rem; border-radius: 999px; background: radial-gradient(circle, rgba(165,107,255,.24), transparent 70%); }
+      .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.12); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+      .project-card::after { display: none; }
+      .project-card--core { border-color: rgba(110,198,198,.12); }
+      .project-card--core::before { content: ""; position: absolute; top: 0; left: 2rem; right: 2rem; height: 1px; background: linear-gradient(90deg, transparent, rgba(110,198,198,.2), transparent); z-index: 1; }
       .project-screenshot {
-        margin-top: 1.2rem; border-radius: 22px; overflow: hidden; background: rgba(6,12,20,.88);
-        border: 1px solid rgba(92,243,255,.12); box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 20px 50px rgba(0,0,0,.26);
+        margin-top: 1.2rem; border-radius: var(--radius-lg); overflow: hidden; background: rgba(10,10,15,.8);
+        border: 1px solid rgba(255,255,255,.06); box-shadow: 0 8px 24px rgba(0,0,0,.2);
       }
       .project-screenshot .gallery { border: 0; box-shadow: none; padding: 0; background: transparent; }
-      .project-screenshot .gallery-stage { aspect-ratio: 16 / 10; min-height: 15rem; border-radius: 20px; }
+      .project-screenshot .gallery-stage { aspect-ratio: 16 / 10; min-height: 15rem; border-radius: var(--radius-lg); }
       .project-screenshot .gallery-slide { padding: .45rem; }
       .project-screenshot .gallery-controls { padding: 0 .4rem .4rem; }
       .meta-chip {
-        width: fit-content; padding: .45rem .75rem; border-radius: 999px; background: rgba(255,90,214,.1); border: 1px solid rgba(255,90,214,.16);
-        color: #ffb3ee; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase;
+        width: fit-content; padding: .45rem .75rem; border-radius: 999px; background: rgba(110,198,198,.06); border: 1px solid rgba(110,198,198,.12);
+        color: var(--cyan); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase;
       }
       .project-card h3, .capability-card h3 { margin: .9rem 0 .7rem; letter-spacing: -.04em; }
       .project-card h3 { font-size: 1.48rem; }
       .project-card p { margin: 0; color: var(--muted); line-height: 1.82; }
       .capability-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
       .capability-card h3 { font-size: 1.16rem; }
-      .fact-main { background: radial-gradient(circle at top right, rgba(255,90,214,.18), transparent 26%), linear-gradient(135deg, rgba(7,14,24,.96), rgba(11,24,39,.92)); border-color: rgba(255,90,214,.14); }
+      .fact-main { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
       .fact-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .fact-item strong { display: block; margin-bottom: .32rem; font-size: 1.95rem; color: var(--cyan); letter-spacing: -.05em; }
-      footer { padding: 1.4rem 1.2rem 3rem; }
-      .footer-shell { max-width: var(--max-width); margin: 0 auto; padding: 1.5rem 1.7rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: rgba(7,14,24,.9); }
+      footer { padding: 2rem 1.2rem 3rem; }
+      .footer-shell { max-width: var(--max-width); margin: 0 auto; padding: 1.5rem 1.7rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: rgba(10,10,15,.8); }
       .footer-shell p { margin: 0; color: var(--muted); line-height: 1.8; }
       .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
       .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -271,13 +269,13 @@
       @media (max-width: 860px) {
         .hero-shell { padding: 2rem; }
         .project-grid, .archive-grid, .fact-grid, .signal-grid, .pipeline, .board-note { grid-template-columns: 1fr; }
-        .nav { border-radius: 26px; flex-direction: column; align-items: flex-start; }
+        .nav { border-radius: var(--radius-xl); flex-direction: column; align-items: flex-start; }
         .hero-visual { min-height: 30rem; }
         .flagship-gallery .gallery-stage { min-height: 28rem; }
       }
       @media (max-width: 640px) {
         .section, .nav-wrap, footer { padding-left: .9rem; padding-right: .9rem; }
-        .hero-shell, .panel, .project-card, .capability-card, .fact-main, .fact-item, .footer-shell, .hero-visual, .showcase-card { border-radius: 22px; }
+        .hero-shell, .panel, .project-card, .capability-card, .fact-main, .fact-item, .footer-shell, .hero-visual, .showcase-card { border-radius: var(--radius-lg); }
         h1 { max-width: none; font-size: clamp(2.7rem, 13vw, 4rem); }
         .hero-visual { min-height: 24rem; }
         .screen.primary { width: 72%; height: 62%; }
@@ -303,14 +301,14 @@
             <div class="hero-grid">
               <div class="hero-copy">
                 <h1>AI工程师，兼具产品与全栈落地能力</h1>
-                <p class="lead">我的主线不是“做了几个 AI demo”，而是围绕 <strong>Cosoul.AI</strong> 主项目持续搭建评测、提示词优化、监控面板和匹配算法实验系统。我在这些项目里承担的角色更接近 <strong>AI 工程 + 产品推进 + 全栈落地 + 混合算法实验</strong>，目标是把 AI 系统从概念推进到可运行、可评测、可迭代的工程形态。</p>
+                <p class="lead">围绕 <strong>Cosoul.AI</strong> 主项目，我持续搭建了评测、提示词优化、监控面板和匹配算法实验系统。我承担的角色横跨 <strong>AI 工程 + 产品推进 + 全栈落地 + 算法实验</strong>，把 AI 系统从概念推进到可运行、可评测、可迭代的工程形态。</p>
                 <div class="role-tags"><span class="tag">AI Engineering</span><span class="tag">Agent Systems</span><span class="tag">Product Execution</span><span class="tag">Full-Stack Delivery</span><span class="tag">Evaluation Loop</span></div>
                 <div class="hero-actions"><a class="button primary" href="#projects">查看 Cosoul 项目族</a><a class="button secondary" href="https://github.com/dyt27666-oss" target="_blank" rel="noreferrer">打开 GitHub</a></div>
                 <div class="signal-grid">
-                  <div class="signal-card"><strong>主线身份</strong><span>AI 工程师，不是只会接模型接口，而是能把产品、工程和实验一起推进的人。</span></div>
+                  <div class="signal-card"><strong>主线身份</strong><span>AI 工程师，能把产品理解、工程落地和实验验证一起推进。</span></div>
                   <div class="signal-card"><strong>项目结构</strong><span>以 Cosoul.AI 为核心，配套评测、Prompt Lab、监控和算法实验平台。</span></div>
-                  <div class="signal-card"><strong>岗位适配</strong><span>更适合 AI 应用研发、Agent 系统开发、产品导向 AI 工程岗位，而不是纯底层训练岗。</span></div>
-                  <div class="signal-card"><strong>真实角色</strong><span>PM、全栈和实验型工程混合，而不是单一“前端”或单一“产品”角色。</span></div>
+                  <div class="signal-card"><strong>目标方向</strong><span>AI 应用研发、Agent 系统开发、产品导向 AI 工程。</span></div>
+                  <div class="signal-card"><strong>复合角色</strong><span>PM 视角 + 全栈落地 + 实验推进，一人多面驱动项目前进。</span></div>
                 </div>
               </div>
               <div class="hero-visual reveal">
@@ -330,17 +328,17 @@
         </section>
 
         <section class="section" id="role">
-          <div class="section-head reveal"><div><span class="eyebrow">Role Frame</span><h2>我更像 AI 项目里的“推进者”</h2></div><p>如果把我简单归类成“前端”或者“产品经理”都不准确。更准确的说法是：我能理解产品目标，也能把 Agent 流程、前后端实现、评测闭环和实验平台一起往前推。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Role Frame</span><h2>AI 项目的全链路推进者</h2></div><p>我能理解产品目标，也能把 Agent 流程、前后端实现、评测闭环和实验平台一起落地推进。</p></div>
           <div class="mission-grid">
-            <article class="panel reveal"><strong class="label">How I Work</strong><h3>不是单纯写功能，而是围绕 AI 系统做完整链路推进</h3><p>我在 Cosoul 系列项目里做得最多的，不是某一个孤立模块，而是从需求理解、方案拆解、界面落地、系统验证到后续优化的整条链路。这使我更适合进入需要跨角色推进的 AI 团队，而不是只负责某个狭窄切面。</p><div class="pipeline"><div class="pipeline-step"><strong>01 Product</strong><span>理解场景、用户路径与系统目标，能把需求转成结构化功能。</span></div><div class="pipeline-step"><strong>02 Build</strong><span>落地前端、后端、数据库与基础工作流，不停留在方案层。</span></div><div class="pipeline-step"><strong>03 Evaluate</strong><span>搭评测、Prompt 对比与验证机制，让系统可比较、可优化。</span></div><div class="pipeline-step"><strong>04 Iterate</strong><span>通过监控与实验平台把问题重新送回主产品迭代。</span></div></div></article>
-            <article class="panel reveal"><strong class="label">Hiring Signal</strong><h3>我想被看到的不是“会用 AI”，而是“能把 AI 系统做出来”</h3><p>很多候选人的项目只停留在调用模型或做一个聊天页面。我的优势在于，我围绕一个主产品继续搭建评测、监控、Prompt 优化和算法实验系统，让项目具备产品化和工程化演进能力。这比“做过几个 Demo”更接近真实 AI 团队的工作方式。</p></article>
+            <article class="panel reveal"><strong class="label">How I Work</strong><h3>围绕 AI 系统做完整链路推进</h3><p>在 Cosoul 系列项目中，我覆盖从需求理解、方案拆解、界面落地、系统验证到后续优化的完整链路，能在跨角色 AI 团队中承担多维推进工作。</p><div class="pipeline"><div class="pipeline-step"><strong>01 Product</strong><span>理解场景、用户路径与系统目标，能把需求转成结构化功能。</span></div><div class="pipeline-step"><strong>02 Build</strong><span>落地前端、后端、数据库与基础工作流，不停留在方案层。</span></div><div class="pipeline-step"><strong>03 Evaluate</strong><span>搭评测、Prompt 对比与验证机制，让系统可比较、可优化。</span></div><div class="pipeline-step"><strong>04 Iterate</strong><span>通过监控与实验平台把问题重新送回主产品迭代。</span></div></div></article>
+            <article class="panel reveal"><strong class=”label”>System Delivery</strong><h3>从概念到系统：把 AI 项目做到可运行、可评测</h3><p>围绕 Cosoul 主产品，我持续搭建了评测、监控、Prompt 优化和算法实验系统，让项目具备产品化和工程化的持续演进能力，覆盖从需求理解到系统验证的完整链路。</p></article>
           </div>
         </section>
 
         <section class="section" id="projects">
-          <div class="section-head reveal"><div><span class="eyebrow">Flagship System</span><h2>Cosoul.AI 是主战场，其他仓库是配套作战系统</h2></div><p>我不把这些仓库当成五个分散项目，而是把它们看成一套围绕主产品展开的 AI 工程体系。这样组织的目的，是让面试官更容易看出我在做系统，而不是单纯堆项目。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Flagship System</span><h2>Cosoul.AI：核心产品与配套工程体系</h2></div><p>五个仓库围绕同一条产品主线，构成一套从核心产品到评测、优化、监控、实验的完整 AI 工程体系。</p></div>
           <div class="spotlight">
-            <article class="panel reveal"><strong class="label">Core Product</strong><h3>Cosoul.AI</h3><p>这是一个面向 AI 社交匹配场景的团队主项目，围绕 Persona、任务澄清、对象检索、Agent 协商与连接确认构建完整产品链路。我的价值不只是参与其中某个局部模块，而是长期以 <strong>产品理解 + 全栈落地 + AI 系统延展</strong> 的方式推进这条主线，并继续把评测、Prompt、监控和算法实验从主产品中拆出来，做成独立支撑系统。</p><div class="project-tags" style="margin-top: 1rem"><span class="tag">Next.js 16</span><span class="tag">Expo 55</span><span class="tag">Turborepo</span><span class="tag">PostgreSQL + pgvector</span><span class="tag">Multi-Agent</span></div><div class="signal-grid" style="margin-top: 1rem"><div class="signal-card"><strong>我推进什么</strong><span>围绕 Persona、Task、Chat、Handshake 和匹配路径理解真实使用场景，把产品目标转成可执行功能。</span></div><div class="signal-card"><strong>我落地什么</strong><span>参与 Web / Native 跨端实现与 Agent 能力整合，关注的不只是页面，而是系统流程能否真正跑通。</span></div><div class="signal-card"><strong>我延展什么</strong><span>围绕主产品继续独立抽离评测、Prompt 优化、监控与算法实验平台，让主项目具备持续迭代能力。</span></div><div class="signal-card"><strong>这说明什么</strong><span>我更适合进入 AI 工程、AI 产品研发或复合型岗位，承担跨产品、工程与实验推进的角色。</span></div></div></article>
+            <article class="panel reveal"><strong class="label">Core Product</strong><h3>Cosoul.AI</h3><p>面向 AI 社交匹配场景的团队主项目，围绕 Persona、任务澄清、对象检索、Agent 协商与连接确认构建完整产品链路。我长期以 <strong>产品理解 + 全栈落地 + AI 系统延展</strong> 的方式推进这条主线，并把评测、Prompt、监控和算法实验从主产品中拆出来，做成独立支撑系统。</p><div class="project-tags" style="margin-top: 1rem"><span class="tag">Next.js 16</span><span class="tag">Expo 55</span><span class="tag">Turborepo</span><span class="tag">PostgreSQL + pgvector</span><span class="tag">Multi-Agent</span></div><div class="signal-grid" style="margin-top: 1rem"><div class="signal-card"><strong>我推进什么</strong><span>围绕 Persona、Task、Chat、Handshake 和匹配路径理解真实使用场景，把产品目标转成可执行功能。</span></div><div class="signal-card"><strong>我落地什么</strong><span>参与 Web / Native 跨端实现与 Agent 能力整合，关注的不只是页面，而是系统流程能否真正跑通。</span></div><div class="signal-card"><strong>我延展什么</strong><span>围绕主产品继续独立抽离评测、Prompt 优化、监控与算法实验平台，让主项目具备持续迭代能力。</span></div><div class="signal-card"><strong>角色定位</strong><span>跨产品、工程与实验推进，适合 AI 工程和复合型研发岗位。</span></div></div></article>
             <div class="showcase-stack reveal">
               <div class="gallery flagship-gallery" data-gallery data-gallery-name="Cosoul.AI">
                 <span class="gallery-label">Flagship Gallery</span>
@@ -366,48 +364,48 @@
         </section>
 
         <section class="section">
-          <div class="section-head reveal"><div><span class="eyebrow">Supporting Systems</span><h2>围绕主项目延展出的四个支撑系统</h2></div><p>这四个仓库是我在求职中最希望重点讲清楚的部分，因为它们最能证明我不只是参与主项目，也能把问题拆出来、独立搭成系统。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Supporting Systems</span><h2>围绕主项目延展出的四个支撑系统</h2></div><p>从主产品中拆出独立问题，分别搭建成可运行的工程系统——评测、Prompt 优化、监控和算法实验各自独立演进。</p></div>
           <div class="project-grid">
-            <article class="project-card reveal"><span class="meta-chip">Algorithm Experiment</span><h3>Cosoul.AI-Algorithm-Test</h3><p>为了让匹配策略不靠直觉推进，我把检索、重排、Judge 评估和实验脚本整理成独立实验平台。我的重点是把“算法想法”变成可跑、可比、可分析的实验过程，而不是停留在概念层。通过这个平台，我也把自己在匹配实验和算法工程推进上的能力单独拉了出来。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Matching Lab</span><span class="tag">Retrieval</span><span class="tag">Experimentation</span><span class="tag">PostgreSQL</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Matching Lab"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/algorithm-test.png" alt="Algorithm experiment main screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/algorithm-test/funnel-overview.png" alt="Algorithm experiment funnel overview screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/algorithm-test/matching-report.png" alt="Algorithm experiment report screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Matching Lab screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Matching Lab screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Prompt Engineering Lab</span><h3>Humanlike Task Agent Prompt</h3><p>这个项目不是为了证明“我会写 Prompt”，而是为了解决任务 Agent 在真实产品里说话不自然、追问低效的问题。我把 Prompt 实验、对话对比和版本迭代单独做成实验室，让交互体验可以被系统化调优。通过这个项目，我更明确地展示了自己在 AI 产品体验和迭代效率上的关注点。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Prompt Lab</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">UX-Oriented Agent</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Prompt Lab"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/prompt-lab.png" alt="Prompt Lab main screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/prompt-lab/multi-model.png" alt="Prompt Lab multi-model comparison screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/prompt-lab/prompt-lab-report.png" alt="Prompt Lab report screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Prompt Lab screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Prompt Lab screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Observability</span><h3>PipeView</h3><p>当主产品开始变复杂，问题就不再只是“功能有没有做完”，而是流程出了偏差时我能不能看见、定位和解释。所以我把匹配流水线拆成独立监控面板，用来观察 L0 到 L2 的运行状态和异常信号。通过这个项目，我把自己对 AI 系统可观测性的理解落成了实际工具。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Monitoring</span><span class="tag">React 19</span><span class="tag">Express 5</span><span class="tag">ECharts</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="PipeView"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/pipeview.png" alt="PipeView monitoring dashboard screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous PipeView screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next PipeView screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Evaluation Platform</span><h3>Soul Eval</h3><p>为了让 `Cosoul.AI` 不只停留在“能跑”，我把评测和优化链路单独抽成了独立平台。我的重点不是堆一个后台，而是把场景构造、Judge / Critic / Optimizer 闭环组织起来，让 AI 输出变成可验证、可比较、可持续优化的对象。通过这个系统，我把自己在 AI 系统评测闭环上的能力展示得更具体。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Eval Loop</span><span class="tag">Prompt Optimization</span><span class="tag">Next.js 14</span><span class="tag">pgvector</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Soul Eval"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/soul-eval.png" alt="Soul Eval dashboard screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/soul-eval/detail-overview.png" alt="Soul Eval detail overview screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/soul-eval/judge-workspace.png" alt="Soul Eval judge workspace screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Soul Eval screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Soul Eval screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card project-card--core reveal"><span class="meta-chip">Algorithm Experiment</span><h3>Cosoul.AI-Algorithm-Test</h3><p>把检索、重排、Judge 评估和实验脚本整理成独立实验平台，让匹配策略不靠直觉推进，而是通过可跑、可比、可分析的实验过程持续优化。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Matching Lab</span><span class="tag">Retrieval</span><span class="tag">Experimentation</span><span class="tag">PostgreSQL</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Matching Lab"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/algorithm-test.png" alt="Algorithm experiment main screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/algorithm-test/funnel-overview.png" alt="Algorithm experiment funnel overview screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/algorithm-test/matching-report.png" alt="Algorithm experiment report screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Matching Lab screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Matching Lab screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Prompt Engineering Lab</span><h3>Humanlike Task Agent Prompt</h3><p>解决任务 Agent 在真实产品中说话不自然、追问低效的问题。把 Prompt 实验、对话对比和版本迭代做成独立实验室，让交互体验能够被系统化调优。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Prompt Lab</span><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">UX-Oriented Agent</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Prompt Lab"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/prompt-lab.png" alt="Prompt Lab main screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/prompt-lab/multi-model.png" alt="Prompt Lab multi-model comparison screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/prompt-lab/prompt-lab-report.png" alt="Prompt Lab report screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Prompt Lab screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Prompt Lab screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Observability</span><h3>PipeView</h3><p>当主产品复杂度上升，需要在流程出现偏差时快速定位和解释。将匹配流水线拆成独立监控面板，观察 L0 到 L2 的运行状态和异常信号，把 AI 系统可观测性落成实际工具。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Monitoring</span><span class="tag">React 19</span><span class="tag">Express 5</span><span class="tag">ECharts</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="PipeView"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/pipeview.png" alt="PipeView monitoring dashboard screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous PipeView screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next PipeView screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card project-card--core reveal"><span class="meta-chip">Evaluation Platform</span><h3>Soul Eval</h3><p>将评测和优化链路从主产品中抽离为独立平台，组织场景构造、Judge / Critic / Optimizer 闭环，让 AI 输出成为可验证、可比较、可持续优化的对象。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Eval Loop</span><span class="tag">Prompt Optimization</span><span class="tag">Next.js 14</span><span class="tag">pgvector</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Soul Eval"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/cosoul-labs/soul-eval.png" alt="Soul Eval dashboard screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/soul-eval/detail-overview.png" alt="Soul Eval detail overview screenshot" /></figure><figure class="gallery-slide"><img src="./assets/cosoul-labs/soul-eval/judge-workspace.png" alt="Soul Eval judge workspace screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous Soul Eval screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next Soul Eval screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
           </div>
         </section>
 
         <section class="section" id="capabilities">
-          <div class="section-head reveal"><div><span class="eyebrow">Capability Matrix</span><h2>这份主页真正想表达的能力结构</h2></div><p>如果我只写“会 React、会 Next.js、会 Python”，面试官很难看出我的独特性。真正有区分度的，是我能不能把这些项目沉淀成一套稳定、可复用的能力结构。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Capability Matrix</span><h2>沉淀下来的核心能力结构</h2></div><p>不止于技术栈罗列，而是通过项目实践沉淀出的一套可复用、有区分度的能力体系。</p></div>
           <div class="capability-grid">
-            <article class="capability-card reveal"><strong class="label">01</strong><h3>AI Engineering</h3><p>我能把 Agent 工作流、Prompt、评测和产品系统结合起来，而不只是调用模型 API。</p></article>
-            <article class="capability-card reveal"><strong class="label">02</strong><h3>Product Thinking</h3><p>我会从用户场景、交互路径和系统价值出发拆问题，而不是只会被动接需求。</p></article>
+            <article class="capability-card reveal"><strong class="label">01</strong><h3>AI Engineering</h3><p>将 Agent 工作流、Prompt、评测和产品系统结合，构建完整的 AI 应用工程。</p></article>
+            <article class="capability-card reveal"><strong class="label">02</strong><h3>Product Thinking</h3><p>从用户场景、交互路径和系统价值出发拆解问题，主动定义产品方向。</p></article>
             <article class="capability-card reveal"><strong class="label">03</strong><h3>Full-Stack Delivery</h3><p>我能把前端、后端、数据库、工作流和平台页面一起落下来，形成完整可运行系统。</p></article>
             <article class="capability-card reveal"><strong class="label">04</strong><h3>Evaluation & Experiments</h3><p>我会做评测闭环、实验平台、指标对比和问题归因，这部分也和我的数据分析基础形成了直接衔接。</p></article>
           </div>
         </section>
 
         <section class="section" id="targets">
-          <div class="section-head reveal"><div><span class="eyebrow">Career Target</span><h2>我希望被投递到什么样的岗位</h2></div><p>这页不是单纯展示项目，而是为了把我的求职方向收束到更清晰的 AI / Agent 相关岗位。相比把方向写得很散，我更希望面试官能一眼看出我的主线和适配位置。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Career Target</span><h2>我的方向：AI 应用与 Agent 系统工程</h2></div><p>围绕 AI 应用研发和 Agent 系统方向，我的项目积累和能力结构指向以下岗位类型。</p></div>
           <div class="fact-board">
-            <article class="fact-main reveal"><strong class="label">Best Fit</strong><h3>AI 工程师，兼具产品与全栈落地能力</h3><p>我更适合的方向是 AI 应用研发、Agent 系统开发、产品导向 AI 工程，以及需要 PM / 工程 / 实验混合推进能力的团队。相比纯底层训练岗，这条路线更符合我当前的项目积累，也更能把我的优势讲清楚。</p></article>
+            <article class="fact-main reveal"><strong class="label">Best Fit</strong><h3>AI 工程师，兼具产品与全栈落地能力</h3><p>聚焦 AI 应用研发、Agent 系统开发和产品导向 AI 工程方向，适合需要 PM / 工程 / 实验混合推进能力的团队。</p></article>
             <div class="fact-grid">
-              <div class="fact-item reveal"><strong>AI应用研发</strong><span>我适合把项目族讲成一套完整的系统工程叙事。</span></div>
-              <div class="fact-item reveal"><strong>Agent工程</strong><span>我目前的主项目 + Prompt + Eval + Monitor 组合已经比较有说服力。</span></div>
-              <div class="fact-item reveal"><strong>产品导向AI工程</strong><span>我具备产品推进和技术落地双视角，这是我比较明确的差异化优势。</span></div>
-              <div class="fact-item reveal"><strong>混合型角色</strong><span>我同时具备 PM、全栈和实验能力，这让我比单标签候选人更适合早期团队。</span></div>
+              <div class="fact-item reveal"><strong>AI应用研发</strong><span>完整的项目族构成系统级工程能力证明。</span></div>
+              <div class="fact-item reveal"><strong>Agent工程</strong><span>主项目 + Prompt Lab + Eval + Monitor 构成完整 Agent 工程闭环。</span></div>
+              <div class="fact-item reveal"><strong>产品导向AI工程</strong><span>产品推进与技术落地双视角，覆盖从需求到上线的全过程。</span></div>
+              <div class="fact-item reveal"><strong>混合型角色</strong><span>PM + 全栈 + 实验三合一，适合需要快速推进的早期团队。</span></div>
             </div>
           </div>
         </section>
 
         <section class="section" id="selected-work">
-          <div class="section-head reveal"><div><span class="eyebrow">Selected Work</span><h2>除了 Cosoul，我还保留了哪些值得看的内容</h2></div><p>这部分不是为了和 `Cosoul` 抢主线，而是为了补足我在产品化、数据分析和业务理解上的能力面。这样组织之后，面试官不会只把我看成“只有一个项目族的人”，也能更完整地理解我的可迁移能力。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Selected Work</span><h2>更多项目：产品化应用与数据分析</h2></div><p>补充展示在产品化应用、数据分析和业务洞察上的能力积累，体现可迁移的多面能力。</p></div>
           <div class="project-grid">
-            <article class="project-card reveal"><span class="meta-chip">Productized App</span><h3>FitTrack AI</h3><p>这是一个偏健康管理的产品化项目，补充展示我在用户场景、移动端体验和 AI 辅助功能落地上的能力。它和 `Cosoul` 不同，但也说明我不只会做实验平台，还能把更贴近终端用户的产品做成完整交互系统。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Product Thinking</span><span class="tag">Mobile UX</span><span class="tag">Health AI</span><span class="tag">Full-Stack</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="FitTrack AI"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/fittrack-ai/dashboard.png" alt="FitTrack AI dashboard screenshot" /></figure><figure class="gallery-slide"><img src="./assets/fittrack-ai/photo-identify-1.png" alt="FitTrack AI food identification screenshot" /></figure><figure class="gallery-slide"><img src="./assets/fittrack-ai/body-comparison.png" alt="FitTrack AI body comparison screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous FitTrack screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next FitTrack screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
-            <article class="project-card reveal"><span class="meta-chip">Data Analytics</span><h3>电商 GMV / RFM 分析</h3><p>如果 `Cosoul` 更偏 AI 工程，这个项目补的就是业务分析与数据洞察能力。我通过 GMV 趋势、订单结构和 RFM 分层去解释业务表现，而不是只生成图表。这部分也能直接补强我对数据分析师、数据智能和策略分析岗位的适配性。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">GMV Analysis</span><span class="tag">RFM</span><span class="tag">Business Insight</span><span class="tag">Visualization</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Ecommerce Analysis"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/ecommerce-data-analysis/monthly_gmv_trend.png" alt="Monthly GMV trend chart" /></figure><figure class="gallery-slide"><img src="./assets/ecommerce-data-analysis/monthly_orders_buyers_trend.png" alt="Monthly orders and buyers trend chart" /></figure><figure class="gallery-slide"><img src="./assets/ecommerce-data-analysis/rfm_segment_distribution.png" alt="RFM segment distribution chart" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous ecommerce analysis screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next ecommerce analysis screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Productized App</span><h3>FitTrack AI</h3><p>面向健康管理场景的产品化项目，覆盖用户场景设计、移动端体验和 AI 辅助功能落地，是一个贴近终端用户的完整交互系统。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Product Thinking</span><span class="tag">Mobile UX</span><span class="tag">Health AI</span><span class="tag">Full-Stack</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="FitTrack AI"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/fittrack-ai/dashboard.png" alt="FitTrack AI dashboard screenshot" /></figure><figure class="gallery-slide"><img src="./assets/fittrack-ai/photo-identify-1.png" alt="FitTrack AI food identification screenshot" /></figure><figure class="gallery-slide"><img src="./assets/fittrack-ai/body-comparison.png" alt="FitTrack AI body comparison screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous FitTrack screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next FitTrack screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+            <article class="project-card reveal"><span class="meta-chip">Data Analytics</span><h3>电商 GMV / RFM 分析</h3><p>聚焦业务分析与数据洞察，通过 GMV 趋势、订单结构和 RFM 分层解释业务表现，深入理解数据背后的业务逻辑。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">GMV Analysis</span><span class="tag">RFM</span><span class="tag">Business Insight</span><span class="tag">Visualization</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Ecommerce Analysis"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/ecommerce-data-analysis/monthly_gmv_trend.png" alt="Monthly GMV trend chart" /></figure><figure class="gallery-slide"><img src="./assets/ecommerce-data-analysis/monthly_orders_buyers_trend.png" alt="Monthly orders and buyers trend chart" /></figure><figure class="gallery-slide"><img src="./assets/ecommerce-data-analysis/rfm_segment_distribution.png" alt="RFM segment distribution chart" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous ecommerce analysis screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next ecommerce analysis screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
           </div>
         </section>
 
         <section class="section">
-          <div class="section-head reveal"><div><span class="eyebrow">Project Archive</span><h2>我之前做过的其他项目</h2></div><p>这些项目不再承担这份主页的主线表达任务，但它们同样是我真实做过的项目经历。我把它们集中放在这里，是为了让面试官看到我能力跨度的完整样子，同时不打乱 `Cosoul` 这条主线。</p></div>
+          <div class="section-head reveal"><div><span class="eyebrow">Project Archive</span><h2>我之前做过的其他项目</h2></div><p>涵盖风险预测、金融数据、医疗影像、材料建模和体育分析等方向的研究型项目经历，展示更完整的能力跨度。</p></div>
           <div class="archive-grid">
             <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Avalanche Forecasting</h3><p>我围绕雪崩预测场景做过指标分析与可视化，这个项目能补充展示我在风险预测与建模结果解释上的基础能力。</p><div class="archive-thumb"><img src="./assets/research/雪崩预测/figure_10-3-2026_15038_.png" alt="Avalanche forecasting research figure" /></div></article>
             <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Bitcoin Gold Analysis</h3><p>我做过偏金融数据与加密资产主题的研究型项目，它主要补充了我对复杂主题数据阅读和整理能力的证明。</p><div class="archive-thumb"><img src="./assets/research/bitcoin-gold/page-013.png" alt="Bitcoin gold analysis page" /></div></article>
@@ -423,7 +421,7 @@
         <div class="footer-shell reveal">
           <div>
             <strong>TY / Cosoul Project Family Portfolio</strong>
-            <p>我用这份主页围绕 Cosoul 系列来展示自己的项目经历，目标是让面试官一眼看出：我偏 AI 应用与 Agent 系统方向，同时具备产品理解、全栈落地和实验推进能力。</p>
+            <p>AI 应用与 Agent 系统方向，具备产品理解、全栈落地和实验推进能力。</p>
           </div>
           <div class="hero-actions" style="margin-top: 0"><a class="button secondary" href="#projects">查看项目</a><a class="button secondary" href="https://github.com/dyt27666-oss" target="_blank" rel="noreferrer">GitHub</a></div>
         </div>
