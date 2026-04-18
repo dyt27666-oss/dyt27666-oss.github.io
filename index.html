@@ -218,6 +218,7 @@
       .gallery-count { color: var(--muted); font-size: .84rem; letter-spacing: .03em; }
       .gallery.single-slide .gallery-controls { display: none; }
       .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .archive-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; }
       .project-card {
         position: relative; overflow: hidden; min-height: 22rem;
         background:
@@ -225,6 +226,20 @@
           radial-gradient(circle at top right, rgba(92,243,255,.1), transparent 24%);
         transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
       }
+      .archive-card {
+        position: relative; overflow: hidden; display: grid; gap: .9rem;
+        padding: 1.1rem; border-radius: 24px; background:
+          linear-gradient(180deg, rgba(10,18,31,.88), rgba(13,24,40,.8)),
+          radial-gradient(circle at top right, rgba(255,90,214,.08), transparent 22%);
+        border: 1px solid rgba(92,243,255,.08); box-shadow: 0 18px 50px rgba(0,0,0,.22);
+      }
+      .archive-card h3 { margin: .55rem 0 .35rem; font-size: 1.15rem; letter-spacing: -.03em; }
+      .archive-card p { margin: 0; color: var(--muted); line-height: 1.72; font-size: .92rem; }
+      .archive-thumb {
+        overflow: hidden; border-radius: 18px; border: 1px solid rgba(92,243,255,.1);
+        background: rgba(8,16,27,.92); aspect-ratio: 16 / 10;
+      }
+      .archive-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
       .project-card:hover { transform: translateY(-6px); border-color: rgba(92,243,255,.24); box-shadow: 0 0 0 1px rgba(92,243,255,.15), 0 28px 90px rgba(0,0,0,.4); }
       .project-card::after { content: ""; position: absolute; inset: auto -1.2rem -1.2rem auto; width: 7rem; height: 7rem; border-radius: 999px; background: radial-gradient(circle, rgba(165,107,255,.24), transparent 70%); }
       .project-screenshot {
@@ -252,10 +267,10 @@
       .footer-shell p { margin: 0; color: var(--muted); line-height: 1.8; }
       .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
       .reveal.visible { opacity: 1; transform: translateY(0); }
-      @media (max-width: 1100px) { .hero-grid, .mission-grid, .spotlight, .fact-board { grid-template-columns: 1fr; } .capability-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+      @media (max-width: 1100px) { .hero-grid, .mission-grid, .spotlight, .fact-board { grid-template-columns: 1fr; } .capability-grid, .archive-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
       @media (max-width: 860px) {
         .hero-shell { padding: 2rem; }
-        .project-grid, .fact-grid, .signal-grid, .pipeline, .board-note { grid-template-columns: 1fr; }
+        .project-grid, .archive-grid, .fact-grid, .signal-grid, .pipeline, .board-note { grid-template-columns: 1fr; }
         .nav { border-radius: 26px; flex-direction: column; align-items: flex-start; }
         .hero-visual { min-height: 30rem; }
         .flagship-gallery .gallery-stage { min-height: 28rem; }
@@ -389,6 +404,18 @@
             <article class="project-card reveal"><span class="meta-chip">Productized App</span><h3>FitTrack AI</h3><p>这是一个偏健康管理的产品化项目，补充展示我在用户场景、移动端体验和 AI 辅助功能落地上的能力。它和 `Cosoul` 不同，但能说明我不只会做实验平台，也能把更贴近终端用户的产品做成完整交互系统。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Product Thinking</span><span class="tag">Mobile UX</span><span class="tag">Health AI</span><span class="tag">Full-Stack</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="FitTrack AI"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/fittrack-ai/dashboard.png" alt="FitTrack AI dashboard screenshot" /></figure><figure class="gallery-slide"><img src="./assets/fittrack-ai/photo-identify-1.png" alt="FitTrack AI food identification screenshot" /></figure><figure class="gallery-slide"><img src="./assets/fittrack-ai/body-comparison.png" alt="FitTrack AI body comparison screenshot" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous FitTrack screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next FitTrack screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
             <article class="project-card reveal"><span class="meta-chip">Data Analytics</span><h3>电商 GMV / RFM 分析</h3><p>如果 `Cosoul` 更偏 AI 工程，这个项目补的就是业务分析与数据洞察能力。我通过 GMV 趋势、订单结构和 RFM 分层去解释业务表现，而不是只生成图表。这部分能直接支撑你对数据分析师、数据智能和策略分析岗位的适配性。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">GMV Analysis</span><span class="tag">RFM</span><span class="tag">Business Insight</span><span class="tag">Visualization</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Ecommerce Analysis"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/ecommerce-data-analysis/monthly_gmv_trend.png" alt="Monthly GMV trend chart" /></figure><figure class="gallery-slide"><img src="./assets/ecommerce-data-analysis/monthly_orders_buyers_trend.png" alt="Monthly orders and buyers trend chart" /></figure><figure class="gallery-slide"><img src="./assets/ecommerce-data-analysis/rfm_segment_distribution.png" alt="RFM segment distribution chart" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous ecommerce analysis screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next ecommerce analysis screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
             <article class="project-card reveal"><span class="meta-chip">Research & Modeling</span><h3>Research Highlights</h3><p>这部分保留的是我在研究和建模方向上的基础证明，包括指标分析、聚类可视化与模型性能比较。它不抢 `Cosoul` 的风头，但能向招聘方说明：我不是完全从应用层起步的人，也有一部分研究和模型分析的底子。</p><div class="chip-row" style="margin-top: 1rem"><span class="tag">Modeling</span><span class="tag">Experiment Design</span><span class="tag">Visualization</span><span class="tag">Research Literacy</span></div><div class="project-screenshot"><div class="gallery" data-gallery data-gallery-name="Research Highlights"><div class="gallery-stage"><figure class="gallery-slide active"><img src="./assets/research/中锰钢/medium-manganese-metrics.png" alt="Materials modeling metrics figure" /></figure><figure class="gallery-slide"><img src="./assets/research/雪崩预测/figure_10-3-2026_15038_.png" alt="Avalanche prediction clustering heatmap" /></figure><figure class="gallery-slide"><img src="./assets/research/雪崩预测/figure_10-3-2026_15052_.png" alt="Avalanche prediction model metrics figure" /></figure></div><div class="gallery-controls"><div class="gallery-buttons"><button class="gallery-button" type="button" data-gallery-prev aria-label="Previous research highlight screenshot">‹</button><button class="gallery-button" type="button" data-gallery-next aria-label="Next research highlight screenshot">›</button></div><div class="gallery-dots" data-gallery-dots></div><span class="gallery-count" data-gallery-count></span></div></div></div></article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head reveal"><div><span class="eyebrow">Project Archive</span><h2>旧页面里的其他项目，也都保留在这里</h2></div><p>这些项目不再承担主线表达的任务，但它们仍然是你的项目经历。把它们放在归档区，有什么好处？既保留完整性，也不让页面重新失去重点。</p></div>
+          <div class="archive-grid">
+            <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Avalanche Forecasting</h3><p>围绕雪崩预测场景做指标分析与可视化，补充展示我在风险预测与建模结果解释上的基础能力。</p><div class="archive-thumb"><img src="./assets/research/雪崩预测/figure_10-3-2026_15038_.png" alt="Avalanche forecasting research figure" /></div></article>
+            <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Bitcoin Gold Analysis</h3><p>偏金融数据与加密资产主题的研究型项目，用来补充我对复杂主题数据阅读和整理能力的证明。</p><div class="archive-thumb"><img src="./assets/research/bitcoin-gold/page-013.png" alt="Bitcoin gold analysis page" /></div></article>
+            <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Medical CT Study</h3><p>与医疗 CT 相关的研究资料整理和图像结果展示，补充说明我对技术资料和垂直领域内容的理解能力。</p><div class="archive-thumb"><img src="./assets/research/medical-ct/page-047.png" alt="Medical CT research page" /></div></article>
+            <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Medium-Manganese Modeling</h3><p>围绕中锰钢性能建模与指标比较的项目，补充展示我对模型性能评估和科研型结果呈现的基础。</p><div class="archive-thumb"><img src="./assets/research/中锰钢/medium-manganese-metrics.png" alt="Medium manganese modeling metrics" /></div></article>
+            <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Olympic Analytics</h3><p>围绕奥运主题的数据分析项目，体现我对公开数据集分析和可视化表达的能力延展。</p><div class="archive-thumb"><img src="./assets/research/olympic/page-014.png" alt="Olympic analytics page" /></div></article>
+            <article class="archive-card reveal"><span class="meta-chip">Archive</span><h3>Tennis Analytics</h3><p>围绕网球比赛数据展开的分析型项目，补充展示我对体育数据和多维统计问题的处理能力。</p><div class="archive-thumb"><img src="./assets/research/tennis/page-010.png" alt="Tennis analytics page" /></div></article>
           </div>
         </section>
       </main>
